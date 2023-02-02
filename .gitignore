@@ -1,0 +1,4 @@
+.DS_Store
+./shikii/backend/node_modules
+./shikii/frontend/node_modules
+./shikii/backend/config.env
