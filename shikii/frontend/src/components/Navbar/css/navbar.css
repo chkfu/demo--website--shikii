@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@900&family=Poppins&display=swap');
+
+
+/* BarLeft */
+
+.logo-text {
+  margin-right: 10px;
+  font-size: 36px;
+  font-family: 'Alexandria', sans-serif;
+  text-transform: uppercase;
+  filter: brightness(1.2)
+}
+
+
+.navbar--itemContainer:hover,
+.navbar--itemContainer:active{
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  font-weight: bold;
+}
+
+.navbar--itemLink:hover,
+.navbar--itemLink:active
+{
+  filter: brightness(1.5);
+}
+
+
+/* BarRight */
+
+.navbar--functionContainer:hover{
+  filter: brightness(1.5);
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  cursor: pointer;
+}
+
+.navbar--functionContainer:active{
+  transform: scale(0.94)
+}
+
+

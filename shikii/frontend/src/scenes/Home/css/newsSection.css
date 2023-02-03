@@ -1,0 +1,31 @@
+
+.display--inner--left{
+  background-image: url(./../images/explore-coverimage-001.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+.display--inner--right{
+    background-image: url(./../images/explore-coverimage-002.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+/* Shared element */
+
+.display--inner--left,
+.display--inner--right {
+  width: 50%;
+  height: 100%;
+  transition: width 1s;
+  filter: brightness(0.7);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;;
+}
+
+.display--inner--left:hover,
+.display--inner--right:hover {
+  width: 90%;
+  filter: brightness(0.85)
+} 

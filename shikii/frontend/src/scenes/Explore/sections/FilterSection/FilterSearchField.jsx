@@ -1,0 +1,109 @@
+import React, { useContext } from 'react';
+import { Box, IconButton } from '@mui/material';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+// from file
+import SearchIcon from '@mui/icons-material/Search';
+import { ResponsiveContext } from '../../../../App';
+import InputFieldReuse from '../../../../components/Formik/InputFieldReuse';
+
+
+// formik and yup settings
+
+const searchProductsInitialValues = {
+    searchItem: ""
+};
+
+const validationSchema = Yup.object().shape({
+    searchItem: Yup.string()
+});
+
+
+// components 
+
+const SearchLabel = ({ screenWidth }) => {
+    return (
+        screenWidth <= 768 ?
+            (<></>) :
+            (
+                <Box sx={ { p: '0 5px', textAlign: 'left' } }>
+                    <label style={ { fontSize: '16px' } }>
+                        Filtered by:
+                    </label>
+                </Box>)
+    );
+};
+
+const SearchForm = ({ setSorter, setCurrPage, setPageSize, setSearch }) => {
+    return (
+        <Formik
+            initialValues={ searchProductsInitialValues }
+            validationSchema={ validationSchema }
+            onSubmit={ async (values) => {
+                setSearch(values.searchItem);
+                setSorter("-createdAt");
+                setCurrPage("1");
+                setPageSize("99999");
+            } }>
+            { ({ formik, values }) => (
+                <Form>
+                    <Box className='format--container'
+                        sx={ {
+                            display: 'flex',
+                            justifyContent: 'flex-start'
+                        } }>
+
+                        <InputFieldReuse id='search--item' name='searchItem' type='text' placeholder='Search...' />
+
+                        <IconButton
+                            type='submit'
+                            sx={ {
+                                backgroundColor: '#dee2e6', m: '10px 0',
+                                ':hover': { backgroundColor: '#dee2e6', filter: 'brightness(0.9)' },
+                                ':active': { transform: 'scale(0.95)' }
+                            } }>
+                            <SearchIcon />
+                        </IconButton>
+
+                    </Box>
+                </Form>
+            ) }
+        </Formik >
+    );
+};
+
+
+// rendering
+
+function FilterSearchField({ setSorter, setCurrPage, setPageSize, setSearch }) {
+
+    // responsive design
+    const screenWidth = useContext(ResponsiveContext);
+
+    // rendering
+    return (
+        <Box
+            className='search--field--container'
+            sx={ {
+                p: screenWidth <= 768 ? '0 20px' : '20px 10px',
+                display: screenWidth <= 768 ? 'flex' : null,
+                justifyContext: screenWidth <= 768 ? 'center' : 'flex-start',
+                alignItems: 'center',
+                width: screenWidth <= 768 ? '200px' : '100%',
+                height: screenWidth <= 768 ? '50px' : '120px'
+            } }>
+
+            <SearchLabel screenWidth={ screenWidth } />
+            <SearchForm setSearch={ setSearch } setSorter={ setSorter } setCurrPage={ setCurrPage } setPageSize={ setPageSize } />
+
+        </Box>
+    );
+}
+
+
+
+
+
+
+
+export default FilterSearchField;

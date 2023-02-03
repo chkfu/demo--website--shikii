@@ -1,0 +1,10 @@
+.section--features--background {
+  width: 100vw;
+  height: 700px;
+  background-image: url('./../images/features-coverimage-001.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
+  z-index: -1;
+}
