@@ -19,33 +19,33 @@ const ShrinkedContainer = () => {
   return (
     <>
 
-      {/* Drawer Trigger */}
+      {/* Drawer Trigger */ }
       <IconButton
-        sx={IconStyle}
-        onClick={() => setMenuOpen(true)}>
+        sx={ IconStyle }
+        onClick={ () => setMenuOpen(true) }>
         <MenuIcon />
       </IconButton>
 
-      {/* Menu Drawer */}
-      <Drawer anchor='left' open={menuOpen} onClick={() => setMenuOpen(false)}>
-        {/* close button */}
+      {/* Menu Drawer */ }
+      <Drawer anchor='left' open={ menuOpen } onClick={ () => setMenuOpen(false) }>
+        {/* close button */ }
         <Box
-          sx={{
+          sx={ {
             display: 'flex',
             justifyContent: 'end'
-          }}
+          } }
         >
           <IconButton
-            sx={{ p: '20px' }}
-            onClick={() => setMenuOpen(false)}>
+            sx={ { p: '20px' } }
+            onClick={ () => setMenuOpen(false) }>
             <CloseIcon />
           </IconButton>
         </Box>
-        {/* Drawer Content */}
-        <Box sx={{ width: '400px', p: '20px 60px' }}>
-          {/* Links Section */}
-          <Typography variant='h6' sx={{ p: '5px' }}>Links</Typography>
-          <List sx={{ p: '5px' }}>
+        {/* Drawer Content */ }
+        <Box sx={ { width: '400px', p: '20px 60px' } }>
+          {/* Links Section */ }
+          <Typography variant='h6' sx={ { p: '5px' } }>Links</Typography>
+          <List sx={ { p: '5px' } }>
             <ListItem>
               <BarLeftItemLink to='/' title='Home' />
             </ListItem>
@@ -60,11 +60,11 @@ const ShrinkedContainer = () => {
             </ListItem>
           </List>
 
-          <Divider sx={{ m: '20px' }} />
+          <Divider sx={ { m: '20px' } } />
 
-          {/* User Section */}
-          <Typography variant='h6' sx={{ p: '5px' }}>User</Typography>
-          <List sx={{ p: '5px' }}>
+          {/* User Section */ }
+          <Typography variant='h6' sx={ { p: '5px' } }>User</Typography>
+          <List sx={ { p: '5px' } } >
 
             <ListItem>
               <BarLeftItemLink to='/login' title='Login / Sign up' />
@@ -86,24 +86,27 @@ const ShrinkedContainer = () => {
 
 const ExpandedContainer = () => {
   return (
-    <List sx={{ display: 'flex' }}>
-      <ListItem>
-        <Link
-          to='/'
-          className='logo-text'
-          style={{ color: '#908B84', fontSize: '28px', textDecoration: 'none' }}>
-          Shikii</Link>
-      </ListItem>
-      <BarLeftItemContainer>
-        <BarLeftItemLink to='/features' title='Features' />
-      </BarLeftItemContainer>
-      <BarLeftItemContainer>
-        <BarLeftItemLink to='/explore' title='Explore' />
-      </BarLeftItemContainer>
-      <BarLeftItemContainer>
-        <BarLeftItemLink to='/news' title='News' />
-      </BarLeftItemContainer>
-    </List>
+    <Box sx={ { display: 'flex', alignItems: 'center', ml: '40px' } }>
+
+      <Link
+        to='/'
+        className='logo-text'
+        style={ { color: '#908B84', fontSize: '28px', textDecoration: 'none' } }>
+        Shikii</Link>
+
+      <List sx={ { display: 'flex', width: '300px', ml: '40px' } }>
+        <BarLeftItemContainer>
+          <BarLeftItemLink to='/features' title='Features' />
+        </BarLeftItemContainer>
+        <BarLeftItemContainer>
+          <BarLeftItemLink to='/explore' title='Explore' />
+        </BarLeftItemContainer>
+        <BarLeftItemContainer>
+          <BarLeftItemLink to='/news' title='News' />
+        </BarLeftItemContainer>
+      </List>
+
+    </Box>
   );
 };
 

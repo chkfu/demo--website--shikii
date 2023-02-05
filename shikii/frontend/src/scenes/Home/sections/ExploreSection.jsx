@@ -1,6 +1,7 @@
 // from package
 import React, { useContext } from 'react';
 import { Box, Divider, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
@@ -50,7 +51,7 @@ function ExploreSection() {
     <section>
       <HomeContainer>
 
-        {/* Heading */}
+        {/* Heading */ }
         <Box>
           <HomeHeading title='Autumn Sale' />
           <HomeSubheading subtitle='Get your discount up to 30% off' />
@@ -58,31 +59,33 @@ function ExploreSection() {
           <HomeCatalogueRedirect linkTo='/explore' />
         </Box>
 
-        {/* Container */}
+        {/* Container */ }
         <Box
           className='display--container--outer'
-          sx={{ display: 'flex', justifyContent: 'center', mt: '50px', width: 'auto', }}>
+          sx={ { display: 'flex', justifyContent: 'center', mt: '50px', width: 'auto', } }>
 
-          {/* Display Area */}
+          {/* Display Area */ }
           <Box
             className='display--container--inner--center'
-            sx={{ display: 'flex', justifyContent: 'center', overflow: 'scroll' }}>
+            sx={ { display: 'flex', justifyContent: 'center', overflow: 'scroll' } }>
             <HomePairCardsContiner>
               {
                 data.data.data.products.map((product, index) => (
 
                   index < displayValue ? (
-                    <div key={product._id}>
+                    <div key={ product._id }>
                       <ProductCardModel
-                        brand={product.brand}
-                        name={product.name}
-                        price={Number(product.price).toFixed(2)}
-                        coverImage={product.coverImage}
-                        keywords={product.keywords}
-                        averageRating={product.averageRating}
-                        numOfRating={product.numOfRating}
+                        id={ product._id }
+                        brand={ product.brand }
+                        name={ product.name }
+                        price={ Number(product.price).toFixed(2) }
+                        coverImage={ product.coverImage }
+                        keywords={ product.keywords }
+                        averageRating={ product.averageRating }
+                        numOfRating={ product.numOfRating }
+                        callbackFn={ () => console.log('add to cart') }
                       />
-                    </div>) : null
+                    </div>) : (<></>)
                 ))
               }
             </HomePairCardsContiner>
@@ -91,7 +94,7 @@ function ExploreSection() {
 
         </Box>
       </HomeContainer >
-      <Divider style={{ width: '100%' }} />
+      <Divider style={ { width: '100%' } } />
     </section >
   );
 }

@@ -9,35 +9,36 @@ function AdvertisementSection() {
         <>
             <Box
                 className='features--advertisement--container'
-                sx={{
+                sx={ {
                     width: '100%',
                     height: '200px',
-                }}>
+                    overflow: 'hidden'
+                } }>
 
                 <Typography
-                    sx={{
+                    sx={ {
                         position: 'absolute',
                         color: 'white',
                         fontSize: '32px',
                         textTransform: 'uppercase',
                         zIndex: '2',
                         p: '50px'
-                    }}>Wabisabi</Typography>
+                    } }>Wabisabi</Typography>
 
-                <Typography sx={{
+                <Typography sx={ {
                     position: 'absolute',
                     color: 'white',
                     fontSize: '24px',
                     textAlign: 'left',
                     zIndex: '2',
                     p: '100px 50px'
-                }}>Imperfect design, the style of Perfection.</Typography>
+                } }>Imperfect design, the style of Perfection.</Typography>
 
                 <Box className='features--advertisement--container'
-                    sx={{ width: '100%', height: '100%', zIndex: '1' }} />
+                    sx={ { width: '100%', height: '100%', zIndex: '1' } } />
 
             </Box>
-            <Divider sx={{ mt: '20px' }} />
+            <Divider sx={ { mt: '20px' } } />
         </>
     );
 }

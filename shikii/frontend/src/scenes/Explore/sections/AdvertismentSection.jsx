@@ -9,35 +9,36 @@ function AdvertisementSection() {
         <>
             <Box
                 className='explore--advertisement--container'
-                sx={{
+                sx={ {
                     width: '100%',
                     height: '200px',
-                }}>
+                    overflow: 'hidden'
+                } }>
 
                 <Typography
-                    sx={{
+                    sx={ {
                         position: 'absolute',
                         color: 'white',
                         fontSize: '32px',
                         textTransform: 'capitalize',
                         zIndex: '2',
                         p: '50px'
-                    }}>Shopping Online</Typography>
+                    } }>Shopping Online</Typography>
 
-                <Typography sx={{
+                <Typography sx={ {
                     position: 'absolute',
                     color: 'white',
                     fontSize: '24px',
                     textAlign: 'left',
                     zIndex: '2',
                     p: '100px 50px'
-                }}>Sign up for 10% off your first order</Typography>
+                } }>Sign up for 10% off your first order</Typography>
 
                 <Box className='explore--advertisement--container'
-                    sx={{ width: '100%', height: '100%', zIndex: '1' }} />
+                    sx={ { width: '100%', height: '100%', zIndex: '1' } } />
 
             </Box>
-            <Divider sx={{ mt: '20px' }} />
+            <Divider sx={ { mt: '20px' } } />
         </>
     );
 }

@@ -19,7 +19,7 @@ function Explore() {
 
     // state managements
     const [search, setSearch] = useState('');
-    const [sorter, setSorter] = useState('price');
+    const [sorter, setSorter] = useState('-createdat');
     const [currPage, setCurrPage] = useState('1');
     const [pageSize, setPageSize] = useState('12');
 

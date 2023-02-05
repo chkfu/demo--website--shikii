@@ -40,10 +40,9 @@ function App() {
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/cart' element={ <Cart /> } />
-            <Route path='/explores'>
+            <Route path='/explore'>
               <Route index element={ <Explore /> } />
               <Route path=':id' element={ <ProductLayout /> } />
-              <Route path='*' element={ <ErrorPage /> } />
             </Route>
             <Route path='/FAQ' element={ <FAQ /> } />
             <Route path='/features' element={ <Features /> } />

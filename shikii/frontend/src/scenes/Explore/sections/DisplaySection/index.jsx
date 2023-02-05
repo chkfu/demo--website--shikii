@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 import ProductCardModel from '../../../../components/Cards/ProductCardModel';
 import { ResponsiveContext } from '../../../../App';
 import PaginationSection from '../PaginationSection';
@@ -31,19 +32,18 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
                         product.series.trim().toLowerCase().includes(refinedSearch)
                     )
                         return (
-                            <div
-                                style={ { display: 'flex', justifyContent: 'center' } } key={ product._id }>
+                            <div key={ product._id }>
                                 <ProductCardModel
+                                    id={ product._id }
                                     brand={ product.brand }
                                     name={ product.name }
-                                    price={ Number(product.price).toFixed(2) }
+                                    price={ product.price }
                                     coverImage={ product.coverImage }
                                     keywords={ product.keywords }
                                     averageRating={ product.averageRating }
                                     numOfRating={ product.numOfRating }
-                                />
-                            </div>
-                        );
+                                    callbackFn={ () => console.log('add to cart') } />
+                            </div>);
                 }
                 ) }
             </Box>
@@ -60,21 +60,22 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
             } }>
                 { data.data.data.products.map((product) => {
                     return (
-                        <div
-                            style={ { display: 'flex', justifyContent: 'center' } } key={ product._id }>
+                        <div key={ product._id }>
                             <ProductCardModel
+                                id={ product._id }
                                 brand={ product.brand }
                                 name={ product.name }
-                                price={ Number(product.price).toFixed(2) }
+                                price={ product.price }
                                 coverImage={ product.coverImage }
                                 keywords={ product.keywords }
                                 averageRating={ product.averageRating }
                                 numOfRating={ product.numOfRating }
-                            />
+                                callbackFn={ () => console.log('add to cart') } />
                         </div>
                     );
-                }) }
-            </Box>
+                })
+                }
+            </Box >
         );
     };
 

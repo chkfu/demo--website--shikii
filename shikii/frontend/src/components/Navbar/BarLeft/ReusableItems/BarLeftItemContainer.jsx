@@ -6,13 +6,14 @@ function BarLeftItemContainer({ children }) {
   return (
     <ListItem
       className='navbar--itemContainer'
-      sx={{
+      sx={ {
+        width: '200px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100px'
-      }}>
-      {children}
+      } }>
+      { children }
     </ListItem>
   );
 }

@@ -8,73 +8,63 @@ function ArticleCardModel(props) {
     return (
         <Box
             className='article--card--container'
-            sx={{
+            sx={ {
                 height: '390px',
                 m: '5px 15px',
                 boxShadow: 2,
+                overflow: 'hidden',
                 backgroundColor: '#f1f3f5',
                 transition: 'transform 1.2s',
                 ':hover': {
                     cursor: 'pointer',
-                    transform: 'scale(1.05)',
+                    transform: 'scale(1.03)',
                     transition: 'transform 1.2s'
-
                 }
-            }}>
+            } }>
 
-            {/* Photo Section */}
+            {/* Photo Section */ }
             <Box
                 className='article--card--photo'
-                sx={{
+                sx={ {
                     width: '440px',
                     height: '230px',
+                    overflow: 'hidden',
                     boxShadow: 1
-                }}>
+                } }>
                 <img
-                    src={`/images/news/${props.coverImage}`}
-                    style={{ width: '100%', height: '100%' }} />
+                    src={ `/images/news/${props.coverImage}` }
+                    style={ { width: '100%', height: '100%' } } />
             </Box>
 
-            {/* Text Box Section */}
+            {/* Text Box Section */ }
             <Box
                 className='article--card--text--box'
-                sx={{
+                sx={ {
                     width: '430px',
                     height: '120px',
                     m: '5px',
                     p: '15px 20px',
-                }}>
+                    overflow: 'hidden',
+                } }>
 
                 <Typography
-                    sx={{
+                    sx={ {
                         fontSize: '16px',
                         textAlign: 'left',
                         color: '#868e96'
-                    }}>
+                    } }>
                     Article
                 </Typography>
 
                 <Typography
-                    sx={{
-                        fontSize: '20px',
+                    sx={ {
+                        fontSize: '18px',
                         textAlign: 'left',
 
-                    }}>
-                    {props.title}
+                    } }>
+                    { props.title }
                 </Typography>
 
-                <Box
-                    sx={{ display: 'flex', justifyContent: 'right', alignItems: 'center', p: '10px' }}>
-                    <RemoveRedEyeOutlinedIcon sx={{ color: '#5f3dc4', p: '0 2px' }} />
-                    <Typography
-                        sx={{
-                            fontSize: '16px',
-                            textAlign: 'left',
-                            color: '#868e96'
-                        }}>
-                        ({props.numOfRead})
-                    </Typography>
-                </Box>
 
             </Box>
 

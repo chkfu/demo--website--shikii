@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { ResponsiveContext } from '../../../../App';
 
 
-function FilterSelectField({ refetch, sorter, setSorter }) {
+function FilterSelectField({ sorter, setSorter }) {
 
     // responsive design
     const screenWidth = useContext(ResponsiveContext);
