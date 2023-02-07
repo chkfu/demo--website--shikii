@@ -18,12 +18,11 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
             <Box sx={ {
                 display: 'grid',
                 justifyItems: 'center',
-                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr', s
+                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr',
             } }>
 
                 {
                     data.data.data.products.map((product) => {
-
                         const refinedSearch = search.trim().toLowerCase();
 
                         if (

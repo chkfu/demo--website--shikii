@@ -40,10 +40,10 @@ const SearchForm = ({ setSorter, setCurrPage, setPageSize, setSearch }) => {
             initialValues={ searchProductsInitialValues }
             validationSchema={ validationSchema }
             onSubmit={ async (values) => {
-                setSearch(values.searchItem);
                 setSorter("-createdAt");
                 setCurrPage("1");
                 setPageSize("99999");
+                setSearch(values.searchItem);
             } }>
             { ({ formik, values }) => (
                 <Form>
