@@ -7,6 +7,7 @@ import axios from 'axios';
 // from file
 import { ResponsiveContext } from '../../../App';
 import ProductCardModel from '../../../components/Cards/ProductCardModel';
+import ErrorPage from '../../ErrorPage';
 
 function ProductSection() {
     const screenWidth = useContext(ResponsiveContext);
@@ -18,7 +19,7 @@ function ProductSection() {
         return <CircularProgress color="inherit" />;
     }
     if (isError) {
-        console.log(error);
+        return <ErrorPage />;
     }
 
     // rendering
@@ -32,6 +33,7 @@ function ProductSection() {
                     p: '20px',
                     fontSize: '30px',
                     textAlign: 'center',
+                    overflow: 'hidden',
                 } }>Latest Products</Typography>
 
             <Box

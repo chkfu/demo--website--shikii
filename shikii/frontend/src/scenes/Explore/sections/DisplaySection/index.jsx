@@ -17,20 +17,49 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
         return (
             <Box sx={ {
                 display: 'grid',
-                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr',
-                alignItems: "center",
-                justify: "center",
+                justifyItems: 'center',
+                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr', s
             } }>
 
-                { data.data.data.products.map((product) => {
+                {
+                    data.data.data.products.map((product) => {
 
-                    const refinedSearch = search.trim().toLowerCase();
+                        const refinedSearch = search.trim().toLowerCase();
 
-                    if (
-                        product.brand.trim().toLowerCase().includes(refinedSearch) ||
-                        product.name.trim().toLowerCase().includes(refinedSearch) ||
-                        product.series.trim().toLowerCase().includes(refinedSearch)
+                        if (
+                            product.brand.trim().toLowerCase().includes(refinedSearch) ||
+                            product.name.trim().toLowerCase().includes(refinedSearch) ||
+                            product.series.trim().toLowerCase().includes(refinedSearch)
+                        )
+                            return (
+                                <div key={ product._id }>
+                                    <ProductCardModel
+                                        id={ product._id }
+                                        brand={ product.brand }
+                                        name={ product.name }
+                                        price={ parseInt(product.price, 10).toFixed(2) }
+                                        coverImage={ product.coverImage }
+                                        keywords={ product.keywords }
+                                        averageRating={ parseInt(product.averageRating, 10) }
+                                        numOfRating={ parseInt(product.numOfRating, 10) }
+                                        callbackFn={ () => console.log('add to cart') } />
+                                </div>);
+                    }
                     )
+                }
+            </Box >
+        );
+    };
+
+    const NonFilteringDisplay = () => {
+        return (
+            <Box sx={ {
+                justifyItems: 'center',
+                display: 'grid',
+                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr',
+            } }>
+                {
+                    data.data.data.products.map((product) => {
                         return (
                             <div key={ product._id }>
                                 <ProductCardModel
@@ -43,37 +72,9 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
                                     averageRating={ product.averageRating }
                                     numOfRating={ product.numOfRating }
                                     callbackFn={ () => console.log('add to cart') } />
-                            </div>);
-                }
-                ) }
-            </Box>
-        );
-    };
-
-    const NonFilteringDisplay = () => {
-        return (
-            <Box sx={ {
-                display: 'grid',
-                gridTemplateColumns: screenWidth > 1100 ? '1fr 1fr 1fr' : '1fr 1fr',
-                alignItems: "center",
-                justify: "center",
-            } }>
-                { data.data.data.products.map((product) => {
-                    return (
-                        <div key={ product._id }>
-                            <ProductCardModel
-                                id={ product._id }
-                                brand={ product.brand }
-                                name={ product.name }
-                                price={ product.price }
-                                coverImage={ product.coverImage }
-                                keywords={ product.keywords }
-                                averageRating={ product.averageRating }
-                                numOfRating={ product.numOfRating }
-                                callbackFn={ () => console.log('add to cart') } />
-                        </div>
-                    );
-                })
+                            </div>
+                        );
+                    })
                 }
             </Box >
         );

@@ -1,8 +1,6 @@
 // from package
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-// from file
 
 function ArticleCardModel(props) {
     return (
@@ -64,7 +62,6 @@ function ArticleCardModel(props) {
                     } }>
                     { props.title }
                 </Typography>
-
 
             </Box>
 

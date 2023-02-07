@@ -12,7 +12,7 @@ function FilterSelectField({ sorter, setSorter }) {
     // rendering
     return (
         <Box sx={ {
-            width: screenWidth <= 768 ? '30px' : '100%',
+            width: screenWidth <= 768 ? '90px' : '100%',
             height: screenWidth <= 768 ? '50px' : '120px',
             textAlign: 'left',
             p: screenWidth <= 768 ? '0' : '0 15px',

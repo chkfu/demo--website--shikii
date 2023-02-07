@@ -7,7 +7,6 @@ import ContainedButton from '../Button/ContainedButton';
 
 function ProductCardModel(props) {
   const stringify = JSON.stringify(props);
-  const parse = JSON.parse(stringify);
   return (
 
     <Box
@@ -20,6 +19,7 @@ function ProductCardModel(props) {
         height: '480px',
         backgroundColor: '#f1f3f5',
         transition: 'transform 1.2s',
+        overflow: 'hidden',
         ':hover': {
           transform: 'scale(1.05)',
           transition: 'transform 1.2s'
@@ -64,25 +64,25 @@ function ProductCardModel(props) {
 
       <Box sx={ { height: '25px', display: 'flex', justifyContent: 'left', p: '2px 15px' } }>
         <Rating
-          value={ props.averageRating }
+          value={ parseInt(props.averageRating, 10) }
           sx={ { textAlign: 'left' } }
           size="large"
           readOnly />
         <Typography sx={ { p: '0 5px', fontSize: '14px', color: '#adb5bd' } }>
-          ({ props.numOfRating })
+          ({ parseInt(props.numOfRating, 10) })
         </Typography>
       </Box>
 
-      <Box sx={ { height: '40px', display: 'flex', justifyContent: 'flex-end', p: '5px 30px' } }>
+      <Box sx={ { height: '40px', display: 'flex', justifyContent: 'flex-end', p: '5px 30px', overflow: 'hidden', } }>
         <Typography
           className='product--price' sx={ { fontSize: '20px', textAlign: 'right' } }>
-          £ { props.price }
+          £ { parseInt(props.price, 10).toFixed(2) }
         </Typography>
       </Box>
 
       <Box
         className='product--button'
-        sx={ { height: '80px', display: 'flex', justifyContent: 'center' } }>
+        sx={ { height: '80px', display: 'flex', justifyContent: 'center', overflow: 'hidden', } }>
         <ContainedButton flexDirection='center' size='small' text='Add to Cart' callbackFn={ props.callbackFn } />
       </Box>
 

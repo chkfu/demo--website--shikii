@@ -38,7 +38,6 @@ function LoginFormik() {
                 <Box className='form--format--container'
                     sx={ { p: '10px 20px' } }>
                     <Form>
-
                         <InputFieldReuse name='email' type='email' label='Email Address' />
                         <InputFieldReuse name='password' type='password' label='Password' />
                         <SubmissionButton text='Login' />

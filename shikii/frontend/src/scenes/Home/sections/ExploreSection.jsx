@@ -13,6 +13,7 @@ import ProductCardModel from '../../../components/Cards/ProductCardModel';
 import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
 import { ResponsiveContext } from '../../../App';
 import { fetchAllProducts } from '../../../theme/APILinks';
+import ErrorPage from '../../ErrorPage';
 
 // rendering
 
@@ -31,7 +32,7 @@ function ExploreSection() {
   }
 
   // database fetching
-  const { data, error, isLoading, isFetching, isError } = useQuery('ProductData', async () => {
+  const { data, isLoading, isFetching, isError } = useQuery('ProductData', async () => {
     return axios.get(fetchAllProducts, {
       params: {
         sort: '-createdAt',
@@ -44,7 +45,7 @@ function ExploreSection() {
     return <CircularProgress color="inherit" />;
   }
   if (isError) {
-    console.log(error);
+    return <ErrorPage />;
   }
 
   return (
@@ -97,6 +98,6 @@ function ExploreSection() {
       <Divider style={ { width: '100%' } } />
     </section >
   );
-}
+};
 
 export default ExploreSection;

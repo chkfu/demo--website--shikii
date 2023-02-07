@@ -58,7 +58,7 @@ const SearchForm = ({ setSorter, setCurrPage, setPageSize, setSearch }) => {
                         <IconButton
                             type='submit'
                             sx={ {
-                                backgroundColor: '#dee2e6', m: '10px 0',
+                                backgroundColor: '#dee2e6', m: '5px 0',
                                 ':hover': { backgroundColor: '#dee2e6', filter: 'brightness(0.9)' },
                                 ':active': { transform: 'scale(0.95)' }
                             } }>

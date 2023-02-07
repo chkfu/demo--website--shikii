@@ -5,11 +5,12 @@ import axios from 'axios';
 // from file
 import './css/explore.css';
 import { ResponsiveContext } from '../../App';
+import { fetchAllProducts } from '../../theme/APILinks';
 import SceneContainer from './../../components/Container/SceneContainer';
 import AdvertisementSection from './sections/AdvertismentSection';
 import FilterSection from './sections/FilterSection';
 import DisplaySection from './sections/DisplaySection';
-import { fetchAllProducts } from '../../theme/APILinks';
+import ErrorPage from '../ErrorPage';
 
 
 function Explore() {
@@ -25,7 +26,7 @@ function Explore() {
 
     // fetching
 
-    const { data, error, isLoading, isError } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
+    const { data, isLoading, isError } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
         return await axios.get(fetchAllProducts, {
             params: {
                 sort: sorter,
@@ -38,7 +39,7 @@ function Explore() {
         return <CircularProgress color="inherit" />;
     }
     if (isError) {
-        console.log(error);
+        return <ErrorPage />;
     }
 
 
@@ -65,14 +66,15 @@ function Explore() {
                 <Box
                     className='outer--format--container'
                     sx={ { display: 'flex', justifyContent: 'center', minHeight: '700px' } }>
+
                     <Box className='inner--format--left' sx={ { width: '250px', backgroundColor: '#fff4e6' } }>
                         <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } page={ page } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
                     </Box>
 
-                    <Box className='inner--format--right' sx={ { width: '80%', backgroundColor: '#f8f9fa' } }>
+                    <Box className='inner--format--right'
+                        sx={ { width: '80%', backgroundColor: '#f8f9fa' } }>
                         <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
                     </Box>
-
                 </Box >
             </SceneContainer >
         );
