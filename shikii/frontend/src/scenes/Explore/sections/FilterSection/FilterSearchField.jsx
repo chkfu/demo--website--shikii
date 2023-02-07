@@ -85,7 +85,6 @@ function FilterSearchField({ setSorter, setCurrPage, setPageSize, setSearch }) {
         <Box
             className='search--field--container'
             sx={ {
-                border: '2px solid purple',
                 p: screenWidth <= 1024 ? '0 5px' : '20px 10px',
                 display: screenWidth <= 1024 ? 'flex' : null,
                 justifyContext: screenWidth <= 1024 ? 'center' : 'flex-start',
