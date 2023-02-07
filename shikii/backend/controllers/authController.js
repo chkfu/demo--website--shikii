@@ -35,9 +35,12 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 });
 
+// *********** TO BE SOLVED **********
+// *********** unable to adoption cookies **********
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
+
   // failures with login details missing
   if (!email || !password) {
     return next(new AppError('Email or Password is not found', 400));
@@ -48,13 +51,22 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect Email or Password', 401));
   }
 
+  // cookies adoption
   let token = signinToken(user._id);
+  const cookieOptions = {
+    httpOnly: true
+  };
+
+  res.cookie('jwt', token, cookieOptions);
 
   res.status(200).json({
     status: 'success',
     token
   });
 });
+
+// *********** unable to adoption cookies **********
+// *********** TO BE SOLVED **********
 
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -129,7 +141,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     return next(new AppError('There is no user with email address.', 404));
   }
 
-  const resetToken = user.createPasswordResetToken();
+  const resetToken = User.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
   const resetURL = `http://${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;

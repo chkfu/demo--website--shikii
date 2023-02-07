@@ -21,9 +21,20 @@ app.use(morgan('dev'));
 app.use(cors());
 
 // middleware
+
+// *********** TO BE SOLVED **********
+// *********** unable to adoption cookies **********
+// *********** OUTPUT:   [Object: null prototype] {} **********
+
 app.use((req, res, next) => {
+    console.log(req.token);
+    console.log(req.cookies);
     next();
 });
+
+// *********** OUTPUT:   [Object: null prototype] {} **********
+// *********** unable to adoption cookies **********
+// *********** TO BE SOLVED **********
 
 // route
 app.use('/api/v1/articles', articleRouter);
