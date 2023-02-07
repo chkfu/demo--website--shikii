@@ -12,12 +12,12 @@ function FilterSelectField({ sorter, setSorter }) {
     // rendering
     return (
         <Box sx={ {
-            width: screenWidth <= 768 ? '90px' : '100%',
-            height: screenWidth <= 768 ? '50px' : '120px',
-            textAlign: 'left',
-            p: screenWidth <= 768 ? '0' : '0 15px',
+            width: screenWidth <= 1024 ? '25%' : '100%',
+            height: screenWidth <= 1024 ? '50px' : '120px',
+            textAlign: screenWidth <= 1024 ? 'center' : 'left',
+            p: screenWidth <= 1024 ? '0' : '0 15px',
         } }>
-            { screenWidth <= 768 ? null : (
+            { screenWidth <= 1024 ? null : (
                 <Box sx={ { textAlign: 'left' } }>
                     <label style={ { fontSize: '16px' } }>Sorted by:</label>
                 </Box>
@@ -25,7 +25,7 @@ function FilterSelectField({ sorter, setSorter }) {
             <select
                 value={ sorter }
                 onChange={ (e) => { setSorter(e.target.value); } }
-                style={ { height: '46px', fontSize: '16px', width: screenWidth <= 768 ? '80px' : '180px' } }>
+                style={ { height: '46px', fontSize: '16px', width: screenWidth <= 1024 ? '100%' : '180px' } }>
                 <option value='default'>Please Select</option>
                 <option value='createdAt'>Latest</option>
                 <option value='-createdAt'>Oldest</option>

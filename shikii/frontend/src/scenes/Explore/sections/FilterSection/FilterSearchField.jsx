@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
 
 const SearchLabel = ({ screenWidth }) => {
     return (
-        screenWidth <= 768 ?
+        screenWidth <= 1024 ?
             (<></>) :
             (
                 <Box sx={ { p: '0 5px', textAlign: 'left' } }>
@@ -85,12 +85,13 @@ function FilterSearchField({ setSorter, setCurrPage, setPageSize, setSearch }) {
         <Box
             className='search--field--container'
             sx={ {
-                p: screenWidth <= 768 ? '0 20px' : '20px 10px',
-                display: screenWidth <= 768 ? 'flex' : null,
-                justifyContext: screenWidth <= 768 ? 'center' : 'flex-start',
+                border: '2px solid purple',
+                p: screenWidth <= 1024 ? '0 5px' : '20px 10px',
+                display: screenWidth <= 1024 ? 'flex' : null,
+                justifyContext: screenWidth <= 1024 ? 'center' : 'flex-start',
                 alignItems: 'center',
-                width: screenWidth <= 768 ? '200px' : '100%',
-                height: screenWidth <= 768 ? '50px' : '120px'
+                width: screenWidth <= 1024 ? '50%' : '100%',
+                height: screenWidth <= 1024 ? '50px' : '120px'
             } }>
 
             <SearchLabel screenWidth={ screenWidth } />
@@ -99,11 +100,5 @@ function FilterSearchField({ setSorter, setCurrPage, setPageSize, setSearch }) {
         </Box>
     );
 }
-
-
-
-
-
-
 
 export default FilterSearchField;

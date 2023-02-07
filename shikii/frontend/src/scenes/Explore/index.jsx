@@ -82,7 +82,7 @@ function Explore() {
     };
 
     return (
-        screenWidth <= 768 ? (
+        screenWidth <= 1024 ? (
             <ShrinkedExplore data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />) : (
             <ExpandedExplore data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />)
     );

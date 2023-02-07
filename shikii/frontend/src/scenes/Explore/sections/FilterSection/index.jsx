@@ -23,6 +23,7 @@ function FilterSection({ sorter, setSorter, search, setSearch, setCurrPage, setP
                     <Box
                         className='filter--section--container'
                         sx={ {
+                            border: '2px solid blue',
                             p: '0 40px 0 0',
                             display: 'flex',
                             justifyContent: 'space-evenly',
@@ -55,7 +56,7 @@ function FilterSection({ sorter, setSorter, search, setSearch, setCurrPage, setP
 
     // rendering
     return (
-        screenWidth <= 768 ? (
+        screenWidth <= 1024 ? (
             <ShrinkedSection filterHidden={ filterHidden } setFilterHidden={ setFilterHidden } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } setCurrPage={ setCurrPage } setPageSize={ setPageSize } />
         ) : (
             <ExpandedSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } setCurrPage={ setCurrPage } setPageSize={ setPageSize } />
