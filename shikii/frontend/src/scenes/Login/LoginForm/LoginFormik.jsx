@@ -31,7 +31,7 @@ function LoginFormik() {
             initialValues={ LoginInitialValues }
             validationSchema={ LoginValidationSchema }
             onSubmit={ async (values) => {
-                await axios.post('http://127.0.0.1:3002/api/v1/users/login', values);
+                await axios.post('http://127.0.0.1:3002/api/v1/users/login', values, { withCredentials: true, credentials: 'include' });
             } }>
 
             { ({ formik, values }) => (

@@ -57,7 +57,15 @@ exports.login = catchAsync(async (req, res, next) => {
     httpOnly: true
   };
 
-  res.cookie('jwt', token, cookieOptions);
+  console.log(token);
+  res.cookie('jwt', token, {
+    expires: new Date(Date.now() + 9999999),
+    httpOnly: false
+  });
+
+  console.log("testing---");
+  console.log(req.cookies['jwt']);
+  //console.log(req);
 
   res.status(200).json({
     status: 'success',

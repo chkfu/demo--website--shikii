@@ -14,7 +14,6 @@ function CommentBox({ data }) {
         <Typography sx={ { color: '#666666', fontSize: '16px' } }>3 results are found.</Typography>
       </Box>
 
-
       <Box sx={ { p: '10px 40px' } }>
         <CommentCardModel data={ data } />
         <CommentCardModel data={ data } />
