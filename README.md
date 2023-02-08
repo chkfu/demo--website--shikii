@@ -27,7 +27,9 @@ $npm run dev
 ```
 You will get the coreesponding response if it is successful.
 ```
-pending
+VITE v4.0.4  
+➜  Local:   http://127.0.0.1:3001/
+➜  press h to show help
 ```
 
 
@@ -41,7 +43,10 @@ $npm start
 ```
 You will get the coreesponding response if it is successful.
 ```
-pending
+[nodemon] restarting due to changes...
+[nodemon] starting `node server.js`
+App listening to port 3002...
+Database connected successfully...
 ```
 
 
