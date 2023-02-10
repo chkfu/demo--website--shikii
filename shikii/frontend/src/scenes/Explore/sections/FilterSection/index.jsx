@@ -23,7 +23,6 @@ function FilterSection({ sorter, setSorter, search, setSearch, setCurrPage, setP
                     <Box
                         className='filter--section--container'
                         sx={ {
-                            border: '2px solid blue',
                             p: '0 40px 0 0',
                             display: 'flex',
                             justifyContent: 'space-evenly',

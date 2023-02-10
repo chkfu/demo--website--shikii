@@ -74,7 +74,8 @@ function ExploreSection() {
                 data.data.data.products.map((product, index) => (
 
                   index < displayValue ? (
-                    <div key={ product._id }>
+                    <div
+                      key={ product._id.toString() }>
                       <ProductCardModel
                         id={ product._id }
                         brand={ product.brand }
@@ -84,7 +85,7 @@ function ExploreSection() {
                         keywords={ product.keywords }
                         averageRating={ product.averageRating }
                         numOfRating={ product.numOfRating }
-                        callbackFn={ () => console.log('add to cart') }
+                        callback={ () => console.log('add to cart') }
                       />
                     </div>) : (<></>)
                 ))

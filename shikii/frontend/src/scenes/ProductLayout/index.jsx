@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -13,9 +13,19 @@ import ErrorPage from '../ErrorPage';
 
 function ProductLayout() {
 
-  // data fetching
-  const { id } = useParams();
+  // responsive design
+  const screenWidth = useContext(ResponsiveContext);
 
+  // ref
+  const commentRef = useRef();
+
+  const scrollToReview = () => {
+    commentRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // data fetching
+
+  const { id } = useParams();
   const { data, isLoading, isError } = useQuery('fetch--single--product', async () => {
     return await axios.get(`http://127.0.0.1:3002/api/v1/products/${id}`);
   });
@@ -26,16 +36,18 @@ function ProductLayout() {
     return <ErrorPage />;
   }
 
-  // responsive design
-  const screenWidth = useContext(ResponsiveContext);
-
   // rendering
   return (
     <>
       <Box sx={ { p: screenWidth <= 1024 ? '20px 40px' : '20px 18vw' } }>
-        <AbstractBox id={ id } data={ data } screenWidth={ screenWidth } />
+
+        <AbstractBox id={ id } data={ data } screenWidth={ screenWidth } scrollToReview={ scrollToReview } />
         <InfoBox id={ id } data={ data } screenWidth={ screenWidth } />
-        <CommentBox id={ id } data={ data } screenWidth={ screenWidth } />
+
+        <div ref={ commentRef }>
+          <CommentBox id={ id } data={ data } screenWidth={ screenWidth } />
+        </div>
+
       </Box>
     </>
   );

@@ -83,7 +83,7 @@ function ProductCardModel(props) {
       <Box
         className='product--button'
         sx={ { height: '80px', display: 'flex', justifyContent: 'center', overflow: 'hidden', } }>
-        <ContainedButton flexDirection='center' size='small' text='Add to Cart' callbackFn={ props.callbackFn } />
+        <ContainedButton flexDirection='center' size='small' text='Add to Cart' callback={ props.callback } />
       </Box>
 
     </Box >

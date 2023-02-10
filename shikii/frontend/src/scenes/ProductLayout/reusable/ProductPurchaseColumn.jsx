@@ -29,7 +29,6 @@ function ProductPurchaseColumn({ data }) {
                 style={ { width: '100px', height: '50px' } } />
 
               <Button type='submit' variant='contained'
-                callbackFn={ async () => console.log(' add to cart') }
                 sx={ {
                   ml: '20px', borderRadius: '0', backgroundColor: '#295252',
                   color: 'white',

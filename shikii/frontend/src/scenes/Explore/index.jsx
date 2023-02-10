@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
@@ -24,9 +24,7 @@ function Explore() {
     const [currPage, setCurrPage] = useState('1');
     const [pageSize, setPageSize] = useState('12');
 
-    console.log(search);
     // fetching
-
     const { data, isLoading, isError } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
         return await axios.get(fetchAllProducts, {
             params: {

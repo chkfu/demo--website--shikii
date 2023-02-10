@@ -1,10 +1,11 @@
 // from package
-import React, { createContext } from 'react';
+import React, { createContext, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from 'react-query';
 // from components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTopButton';
 import { useResponsiveHook } from './theme/useResponsiveHook';
 // from scences
 import Cart from './scenes/Cart';
@@ -26,13 +27,26 @@ export const queryClient = new QueryClient();
 
 // render
 function App() {
+
+  // responsive design
   const screenWidth = useResponsiveHook();
+
+  // hook
+  const scrollRef = useRef();
+
+  const scrollHandler = () => {
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+
+
+  // render
 
   return (
     <ResponsiveContext.Provider value={ screenWidth }>
       <QueryClientProvider client={ queryClient }>
 
-        <nav>
+        <nav ref={ scrollRef }>
           <Navbar />
         </nav>
 
@@ -58,6 +72,10 @@ function App() {
         <footer>
           <Footer />
         </footer>
+
+        <div>
+          <ScrollToTop scrollHandler={ scrollHandler } />
+        </div>
 
       </QueryClientProvider>
     </ResponsiveContext.Provider>

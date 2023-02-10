@@ -37,7 +37,7 @@ const CommentCardBottom = ({ data }) => {
 
 function CommentCardModel({ data }) {
   return (
-    <Box sx={ { minHeight: '200px', m: '10px 0', p: '20px', backgroundColor: '#ecece2', boxShadow: '1' } }>
+    <Box sx={ { minHeight: '200px', m: '10px 0', p: '40px 60px', backgroundColor: '#ecece2', boxShadow: '1' } }>
       <CommentCardTop data={ data } />
       <CommentCardMiddle data={ data } />
       <CommentCardBottom data={ data } />

@@ -57,7 +57,7 @@ function ProductSection() {
                                     keywords={ product.keywords }
                                     averageRating={ product.averageRating }
                                     numOfRating={ product.numOfRating }
-                                    callbackFn={ () => console.log('add to cart') } />
+                                    callback={ () => console.log('add to cart') } />
                             </div>);
                     })
                 }

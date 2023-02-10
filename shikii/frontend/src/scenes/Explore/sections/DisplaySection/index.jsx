@@ -41,7 +41,7 @@ function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPage
                                         keywords={ product.keywords }
                                         averageRating={ parseInt(product.averageRating, 10) }
                                         numOfRating={ parseInt(product.numOfRating, 10) }
-                                        callbackFn={ () => console.log('add to cart') } />
+                                        callback={ () => console.log('add to cart') } />
                                 </div>);
                     }
                     )
