@@ -15,7 +15,7 @@ function ArticleCardModel(props) {
                 transition: 'transform 1.2s',
                 ':hover': {
                     cursor: 'pointer',
-                    transform: 'scale(1.03)',
+                    transform: 'scale(1.02)',
                     transition: 'transform 1.2s'
                 }
             } }>

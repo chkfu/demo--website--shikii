@@ -6,6 +6,7 @@ import axios from 'axios';
 import './css/explore.css';
 import { ResponsiveContext } from '../../App';
 import { fetchAllProducts } from '../../theme/APILinks';
+import SectionScrollingIn from '../../components/Animation/SectionScrollingIn';
 import SceneContainer from './../../components/Container/SceneContainer';
 import AdvertisementSection from './sections/AdvertismentSection';
 import FilterSection from './sections/FilterSection';
@@ -46,14 +47,22 @@ function Explore() {
     const ShrinkedExplore = ({ data, sorter, setSorter, search, setSearch, currPage, setCurrPage, pageSize, setPageSize }) => {
         return (
             <SceneContainer>
+
                 <AdvertisementSection />
-                <Box sx={ { backgroundColor: '#fff4e6' } }>
-                    <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } urrPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
-                </Box>
-                <Box
-                    sx={ { mt: '10px', minHeight: '600px', backgroundColor: '#f8f9fa' } }>
-                    <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
-                </Box>
+
+                <SectionScrollingIn>
+                    <Box sx={ { backgroundColor: '#fff4e6' } }>
+                        <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } urrPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
+                    </Box>
+                </SectionScrollingIn>
+
+                <SectionScrollingIn>
+                    <Box
+                        sx={ { mt: '10px', minHeight: '600px', backgroundColor: '#f8f9fa' } }>
+                        <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
+                    </Box>
+                </SectionScrollingIn>
+
             </SceneContainer >
         );
     };
@@ -61,20 +70,26 @@ function Explore() {
     const ExpandedExplore = ({ data, sorter, setSorter, search, setSearch, page, setCurrPage, pageSize, setPageSize }) => {
         return (
             <SceneContainer>
+
                 <AdvertisementSection />
-                <Box
-                    className='outer--format--container'
-                    sx={ { display: 'flex', justifyContent: 'center', minHeight: '700px' } }>
 
-                    <Box className='inner--format--left' sx={ { width: '250px', backgroundColor: '#fff4e6' } }>
-                        <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } page={ page } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
-                    </Box>
+                <SectionScrollingIn>
+                    <Box
+                        className='outer--format--container'
+                        sx={ { display: 'flex', justifyContent: 'center', minHeight: '700px' } }>
 
-                    <Box className='inner--format--right'
-                        sx={ { width: '80%', backgroundColor: '#f8f9fa' } }>
-                        <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
-                    </Box>
-                </Box >
+                        <Box className='inner--format--left' sx={ { width: '250px', backgroundColor: '#fff4e6' } }>
+                            <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } page={ page } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
+                        </Box>
+
+                        <Box className='inner--format--right'
+                            sx={ { width: '80%', backgroundColor: '#f8f9fa' } }>
+                            <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
+                        </Box>
+
+                    </Box >
+                </SectionScrollingIn>
+
             </SceneContainer >
         );
     };

@@ -8,7 +8,6 @@ import ContainedButton from '../Button/ContainedButton';
 function ProductCardModel(props) {
   const stringify = JSON.stringify(props);
   return (
-
     <Box
       key={ props.key }
       className='product--card--container'
@@ -21,7 +20,7 @@ function ProductCardModel(props) {
         transition: 'transform 1.2s',
         overflow: 'hidden',
         ':hover': {
-          transform: 'scale(1.05)',
+          transform: 'scale(1.03)',
           transition: 'transform 1.2s'
         }
       } }>

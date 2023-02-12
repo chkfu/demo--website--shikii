@@ -9,17 +9,17 @@ const NavbarContainer = ({ children }) => {
     <AppBar position='sticky'>
       <Box
         className='navbar--container'
-        sx={{
+        sx={ {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: '100px',
+          height: '120px',
           p: '0 40px',
           backgroundColor: '#49453F',
           color: '#908B84'
-        }}
+        } }
       >
-        {children}
+        { children }
       </Box>
     </AppBar>
 

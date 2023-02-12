@@ -1,9 +1,7 @@
 // import package
-import React, { useEffect } from 'react';
-import { motion } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
-import { useAnimation } from 'framer-motion';
+import React from 'react';
 // import files
+import SectionScrollingIn from '../../components/Animation/SectionScrollingIn';
 import FeatureSection from './sections/FeatureSection';
 import ExploreSection from './sections/ExploreSection';
 import NewsSection from './sections/NewsSection';
@@ -14,35 +12,17 @@ import NewsSection from './sections/NewsSection';
 
 function Home() {
 
-  const animation = useAnimation();
-  const [ref, inView] = useInView({ threshold: [0.2, 0.99] });
-
-  useEffect(() => {
-    if (inView) {
-      animation.start({
-        x: '0', opacity: '1', transition: { type: 'spring', stiffness: '150', duration: 4 }
-      });
-    }
-    if (!inView) {
-      animation.start({
-        x: '-50vw', opacity: '0'
-      });
-    }
-  }, [ref, inView]);
-
   return (
     <>
       <FeatureSection />
 
-      <motion.div
-        key='1'
-        ref={ ref } animate={ animation }>
+      <SectionScrollingIn>
         <ExploreSection />
-      </motion.div>
+      </SectionScrollingIn>
 
-      <motion.div>
+      <SectionScrollingIn>
         <NewsSection />
-      </motion.div>
+      </SectionScrollingIn>
 
     </>
 

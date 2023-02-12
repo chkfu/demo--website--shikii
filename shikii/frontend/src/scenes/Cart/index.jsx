@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 // from file
+import SectionScrollingIn from '../../components/Animation/SectionScrollingIn';
 import SceneContainer from './../../components/Container/SceneContainer';
 import ProgressionBar from './ProgressionBar';
 import ReviewStep from './ReviewStep';
@@ -21,9 +22,9 @@ function Cart() {
   // page selection
 
   const PageSelector = ({ currStep }) => {
-    if (currStep === '1') return <ReviewStep />;
-    if (currStep === '2') return <ContactStep />;
-    if (currStep === '3') return <PaymentStep />;
+    if (currStep === '1') return <SectionScrollingIn> <ReviewStep /> </SectionScrollingIn>;
+    if (currStep === '2') return <SectionScrollingIn> <ContactStep /> </SectionScrollingIn>;
+    if (currStep === '3') return <SectionScrollingIn> <PaymentStep /> </SectionScrollingIn>;
   };
 
   // rendering
@@ -34,12 +35,12 @@ function Cart() {
         <Typography>Check out with 3 steps</Typography>
       </Box>
 
-      <ProgressionBar totalPage={totalPage} currStep={currStep} setCurrStep={setCurrStep} />
-      <PageSelector currStep={currStep} />
-      <ButtonColumn totalPage={totalPage} currStep={currStep} setCurrStep={setCurrStep} />
+      <ProgressionBar totalPage={ totalPage } currStep={ currStep } setCurrStep={ setCurrStep } />
+      <PageSelector currStep={ currStep } />
+      <ButtonColumn totalPage={ totalPage } currStep={ currStep } setCurrStep={ setCurrStep } />
 
     </SceneContainer >
   );
 }
 
-export default Cart;
+export default Cart;;;

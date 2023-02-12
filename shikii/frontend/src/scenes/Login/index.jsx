@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 // from file
+import SectionScrollingIn from '../../components/Animation/SectionScrollingIn';
 import LoginContainer from './LoginForm/LoginContainer';
 import RegisterContainer from './SignupForm/RegisterContainer';
 import './css/login.css';
 
+// rendering
 
 function Login() {
   // responsive design
@@ -23,7 +25,15 @@ function Login() {
         alignItems: 'center'
       } }>
 
-      { loginChosen === true ? <LoginContainer RegFormSwitch={ RegFormSwitch } /> : <RegisterContainer RegFormSwitch={ RegFormSwitch } /> }
+      { loginChosen === true ?
+        <SectionScrollingIn>
+          <LoginContainer RegFormSwitch={ RegFormSwitch } />
+        </SectionScrollingIn>
+        :
+        <SectionScrollingIn>
+          <RegisterContainer RegFormSwitch={ RegFormSwitch } />
+        </SectionScrollingIn>
+      }
     </Box >
   );
 }
