@@ -54,9 +54,7 @@ function Explore() {
                     <Box sx={ { backgroundColor: '#fff4e6' } }>
                         <FilterSection sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } urrPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
                     </Box>
-                </SectionScrollingIn>
 
-                <SectionScrollingIn>
                     <Box
                         sx={ { mt: '10px', minHeight: '600px', backgroundColor: '#f8f9fa' } }>
                         <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />

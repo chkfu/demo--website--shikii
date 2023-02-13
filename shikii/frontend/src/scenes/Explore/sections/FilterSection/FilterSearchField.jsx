@@ -90,7 +90,7 @@ function FilterSearchField({ setSorter, setCurrPage, setPageSize, setSearch }) {
                 justifyContext: screenWidth <= 1024 ? 'center' : 'flex-start',
                 alignItems: 'center',
                 width: screenWidth <= 1024 ? '50%' : '100%',
-                height: screenWidth <= 1024 ? '50px' : '120px'
+                height: screenWidth <= 1024 ? '70px' : '120px'
             } }>
 
             <SearchLabel screenWidth={ screenWidth } />

@@ -14,7 +14,7 @@ function BarRight() {
   const screenWidth = useContext(ResponsiveContext);
   return (
     screenWidth >= 768 ? (
-      <Box sx={{ display: 'flex', mr: '20px' }}>
+      <Box sx={ { display: 'flex', mr: '20px' } }>
         <LoginComponent />
         <SearchComponent />
         <CartComponent />

@@ -98,11 +98,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(new AppError('Token is not existed', 401));
   }
 
-  // check password change
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(new AppError('Password changed recently...', 401));
-  }
-
   req.user = currentUser;
   res.locals.user = currentUser;
   next();
@@ -119,11 +114,6 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     // check user
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
-      return next();
-    }
-
-    // check password change
-    if (currentUser.changedPasswordAfter(decoded.iat)) {
       return next();
     }
 

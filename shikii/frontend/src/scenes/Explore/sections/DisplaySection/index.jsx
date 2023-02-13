@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Box } from '@mui/material';
-import { Link } from 'react-router-dom';
 import ProductCardModel from '../../../../components/Cards/ProductCardModel';
 import { ResponsiveContext } from '../../../../App';
 import PaginationSection from '../PaginationSection';

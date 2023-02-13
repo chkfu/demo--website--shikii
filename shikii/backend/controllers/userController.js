@@ -6,8 +6,7 @@ const catchAsync = require('./../util/catchAsync');
 // controllers for users
 
 exports.getMe = catchAsync(async (req, res, next) => {
-
-    const user = req.locals.user;
+    const user = res.locals.user;
     res.status(200).json({
         message: user
     });
