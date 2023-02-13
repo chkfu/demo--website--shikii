@@ -1,7 +1,6 @@
 // from package
 import React, { useContext } from 'react';
 import { Box, Divider, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
@@ -12,7 +11,6 @@ import HomePairCardsContiner from '../ReusableItems/HomePairCardsContiner';
 import ProductCardModel from '../../../components/Cards/ProductCardModel';
 import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
 import { ResponsiveContext } from '../../../App';
-import { fetchAllProducts } from '../../../theme/APILinks';
 import ErrorPage from '../../ErrorPage';
 
 // rendering
@@ -33,7 +31,7 @@ function ExploreSection() {
 
   // database fetching
   const { data, isLoading, isFetching, isError } = useQuery('ProductData', async () => {
-    return axios.get(fetchAllProducts, {
+    return axios.get('http://127.0.0.1:3002/api/v1/products', {
       params: {
         sort: '-createdAt',
         page: 1,

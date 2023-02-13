@@ -1,7 +1,6 @@
 // from package
 import React, { useContext } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
@@ -13,7 +12,7 @@ function ProductSection() {
     const screenWidth = useContext(ResponsiveContext);
     // database fetching
     const { data, error, isLoading, isFetching, isError } = useQuery('FetchNewItem', () => {
-        return axios.get('http://localhost:3002/api/v1/products/get-new-items');
+        return axios.get('http://127.0.0.1:3002/api/v1/products');
     });
     if (isLoading, isFetching) {
         return <CircularProgress color="inherit" />;

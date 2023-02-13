@@ -63,9 +63,10 @@ exports.login = catchAsync(async (req, res, next) => {
     httpOnly: false
   });
 
-  console.log("testing---");
-  console.log(req.cookies['jwt']);
-  //console.log(req);
+  req.user = user;
+  res.locals.user = user;
+
+
 
   res.status(200).json({
     status: 'success',
@@ -78,7 +79,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 
 exports.protect = catchAsync(async (req, res, next) => {
-
+  return next();
   // get token
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {

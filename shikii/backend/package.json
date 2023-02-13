@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "proxy":"http://127.0.0.1:3001",
   "author": "kchan",
   "license": "ISC",
   "dependencies": {
