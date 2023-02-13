@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Pagination } from '@mui/material';
-import { fetchAllProducts } from '../../../../theme/APILinks';
 
 
 function PaginationSection({ currPage, setCurrPage, pageSize, setPageSize }) {

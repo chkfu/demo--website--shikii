@@ -11,7 +11,7 @@ import BarRight from './BarRight/BarRight';
 const NavbarContainer = ({ children }) => {
 
   const { data, error, isLoading, isError } = useQuery('getCurrUser', async () => {
-    return await axios.get('http;//127.0.0.1:3002/api/v1/products');
+    return await axios.get('http://127.0.0.1:3002/api/v1/getMe');
   });
   if (isLoading) {
     console.log('loading');
@@ -19,6 +19,7 @@ const NavbarContainer = ({ children }) => {
   if (isError) {
     console.log(error);
   }
+  console.log(data);
 
   return (
     <AppBar position='sticky'>
