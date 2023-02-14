@@ -23,10 +23,12 @@ app.use(cors({ origin: true, credentials: true }));
 
 // middleware
 app.use((req, res, next) => {
+    console.log('----------middleware start------------');
     const authHeader = req.cookies.accessToken;
     if (authHeader) {
         req.headers.authorization = `Bearer ${authHeader}`;
     }
+    console.log('----------middleware end------------');
     next();
 });
 

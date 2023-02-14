@@ -12,7 +12,7 @@ function ProductSection() {
     const screenWidth = useContext(ResponsiveContext);
     // database fetching
     const { data, error, isLoading, isFetching, isError } = useQuery('FetchNewItem', () => {
-        return axios.get('http://127.0.0.1:3002/api/v1/products');
+        return axios.get('http://127.0.0.1:3002/api/v1/products/get-new-items');
     });
     if (isLoading, isFetching) {
         return <CircularProgress color="inherit" />;

@@ -1,25 +1,12 @@
 // from package
 import React from 'react';
 import { AppBar, Box } from '@mui/material';
-import { useQuery } from 'react-query';
-import axios from 'axios';
 // from file
 import BarLeft from './BarLeft/BarLeft';
 import BarRight from './BarRight/BarRight';
 
 
 const NavbarContainer = ({ children }) => {
-
-  const { data, error, isLoading, isError } = useQuery('getCurrUser', async () => {
-    return await axios.get('http://127.0.0.1:3002/api/v1/getMe');
-  });
-  if (isLoading) {
-    console.log('loading');
-  }
-  if (isError) {
-    console.log(error);
-  }
-  console.log(data);
 
   return (
     <AppBar position='sticky'>

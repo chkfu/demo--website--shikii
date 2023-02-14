@@ -5,7 +5,6 @@ import axios from 'axios';
 // from file
 import './css/explore.css';
 import { ResponsiveContext } from '../../App';
-import SectionScrollingIn from '../../components/Animation/SectionScrollingIn';
 import SceneContainer from './../../components/Container/SceneContainer';
 import AdvertisementSection from './sections/AdvertismentSection';
 import FilterSection from './sections/FilterSection';

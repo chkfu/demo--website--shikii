@@ -35,8 +35,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 });
 
-// *********** TO BE SOLVED **********
-// *********** unable to adoption cookies **********
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
@@ -54,44 +52,66 @@ exports.login = catchAsync(async (req, res, next) => {
   // cookies adoption
   let token = signinToken(user._id);
   const cookieOptions = {
-    httpOnly: true
+    httpOnly: true,
+    secure: true
   };
 
   console.log(token);
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + 9999999),
-    httpOnly: false
+    HttpOnly: false
   });
+
+
+  console.log('-------------login--req.headers-authorization', req.headers.authorization);
 
   req.user = user;
   res.locals.user = user;
+  console.log('-------------login--res.locals.user', req.locals.user);
 
-
-
+  console.log('-------------login--end');
   res.status(200).json({
     status: 'success',
-    token
+    token,
+    data: {
+      status: 'success',
+      user
+    }
   });
 });
 
-// *********** unable to adoption cookies **********
-// *********** TO BE SOLVED **********
-
 
 exports.protect = catchAsync(async (req, res, next) => {
-  return next();
+
+  console.log('---------------protect start');
+
   // get token
   let token;
+
+  // adopted
+  console.log('------------protect-req.headers', req.headers);
+  // req.headers.authorisation === undefined
+  console.log('-----------protect--req.headers.authorization', req.headers.authorization);
+  // req.headers.authorisation === no display
+  console.log('------------protect-req.cookie.jwt', req.cookie.jwt);
+
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
   } else if (req.cookie.jwt) {
     token = req.cookie.jwt;
   }
 
+  console.log('------------protect-token', token);
+
   if (!token) return next(new AppError('Failed to access without login', 401));
+
+  console.log('---------------check token');
 
   // validation
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+
+  console.log('---------------decoded');
 
   // check user
   const currentUser = await User.findById(decoded.id);
@@ -100,7 +120,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   req.user = currentUser;
+  console.log('**********************res.user', req.user);
   res.locals.user = currentUser;
+  console.log('**********************res.user', res.locals.user);
   next();
 });
 

@@ -6,7 +6,7 @@ const catchAsync = require('./../util/catchAsync');
 
 exports.getNewItems = catchAsync(async (req, res, next) => {
     req.query.limit = 12;
-    const threeMonths = 1000 * 60 * 60 * 24 * 30 + 3;
+    const threeMonths = 1000 * 60 * 60 * 24 * 30 * 3;
     const products = await Product.find(
         {
             createdAt: {

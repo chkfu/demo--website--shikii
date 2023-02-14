@@ -11,7 +11,7 @@ router.post('/login', authController.login);
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.get('/getMe', userController.getMe);
+router.route('/get-current-user').get(authController.protect, userController.getMe);
 
 
 // Staff Permissions
