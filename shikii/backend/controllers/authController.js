@@ -50,26 +50,19 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   // cookies adoption
-  let token = signinToken(user._id);
+
+  const token = signinToken(user._id);
+
   const cookieOptions = {
     httpOnly: true,
-    secure: true
   };
 
-  console.log(token);
-  res.cookie('jwt', token, {
-    expires: new Date(Date.now() + 9999999),
-    HttpOnly: false
-  });
-
-
-  console.log('-------------login--req.headers-authorization', req.headers.authorization);
+  res.cookie('jwt', token, cookieOptions);
 
   req.user = user;
   res.locals.user = user;
-  console.log('-------------login--res.locals.user', req.locals.user);
 
-  console.log('-------------login--end');
+
   res.status(200).json({
     status: 'success',
     token,
@@ -83,35 +76,21 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
 
-  console.log('---------------protect start');
+  console.log('auth:  before let token, req.cookies', req.cookies);
 
-  // get token
   let token;
-
   // adopted
-  console.log('------------protect-req.headers', req.headers);
-  // req.headers.authorisation === undefined
-  console.log('-----------protect--req.headers.authorization', req.headers.authorization);
-  // req.headers.authorisation === no display
-  console.log('------------protect-req.cookie.jwt', req.cookie.jwt);
 
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookie.jwt) {
-    token = req.cookie.jwt;
+  if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
-  console.log('------------protect-token', token);
+  // console.log('auth ----- token ----', token);
 
   if (!token) return next(new AppError('Failed to access without login', 401));
 
-  console.log('---------------check token');
-
   // validation
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
-
-  console.log('---------------decoded');
 
   // check user
   const currentUser = await User.findById(decoded.id);

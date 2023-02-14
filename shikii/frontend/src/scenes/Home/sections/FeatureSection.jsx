@@ -45,7 +45,7 @@ const Messages = () => {
 
 const Button = () => {
   return (
-    <>
+    <Box className='format--container'>
 
       {/* Button */ }
       <motion.div
@@ -63,17 +63,16 @@ const Button = () => {
         animate={ { opacity: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0] } }
         transition={ { type: 'spring', stiffness: '100', delay: 5, duration: 20 } }>
 
-        <Box sx={ { position: 'absolute', top: '370px', ml: '70px', p: '10px' } }>
-          <PanToolAltOutlinedIcon sx={ { fontSize: '350%', color: 'white' } } />
+        <Box sx={ { position: 'absolute', top: '76%', ml: '70px', p: '10px' } }>
+          <PanToolAltOutlinedIcon sx={ { fontSize: '300%', color: 'white' } } />
           <Typography
-            sx={ { width: '80%', position: 'absolute', top: '75%', color: 'white', fontSize: '24px' } }>
+            sx={ { width: '80%', position: 'absolute', top: '70%', color: 'white', fontSize: '24px' } }>
             Click
           </Typography>
         </Box>
-
       </motion.div>
 
-    </>
+    </Box>
   );
 };
 

@@ -19,7 +19,7 @@ function BarRight() {
 
   // data fetching
   const { data, error, isLoading, isError } = useQuery('GetCurrUser', async () => {
-    return await axios.get('http://127.0.0.1:3002/api/v1/users/get-current-user');
+    return await axios.get('http://127.0.0.1:3002/api/v1/users/get-current-user', { withCredentials: true, credentials: 'include' });
   });
   if (isLoading) {
     console.log('loading...');
