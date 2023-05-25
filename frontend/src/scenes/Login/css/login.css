@@ -1,0 +1,14 @@
+.login--page--section{
+    background-image: url('./../images/login--background--cover.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 700px;
+    opacity: 0.9;
+    z-index: -1;
+}
+
+.login--form{
+    z-index: 2;
+}
