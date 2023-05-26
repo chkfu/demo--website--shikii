@@ -6,8 +6,8 @@ export const exploreSlice = createSlice({
   initialState: {
     search: '',
     sorter: '-createdat',
-    currPage: '1',
-    pageSize: '12',
+    currPage: 1,
+    pageSize: 12,
     filterHidden: true
   },
   reducers: {

@@ -1,34 +1,45 @@
 // from package
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+// from file
+import { setCurrStep } from '../../../../../redux/reducers/cartSlice';
 
 
 
 // rendering
-function StepItem({ step, title, currStep, setCurrStep }) {
+function StepItem({ step, title }) {
+
+  // redux
+  const currStep = useSelector(state => state.cart.currStep);
 
   // styles
-
   const ContainerStyle = {
     display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer',
     width: '50px', height: '50px', borderRadius: '100%',
-    background: Number(currStep) >= Number(step) ? `linear-gradient(to top right, #295252 0%, #394545 65%)` : '#dee2e6',
-    color: Number(currStep) >= Number(step) ? '#dee2e6' : '#adb5bd'
+    background: currStep >= step ? `linear-gradient(to top right, #295252 0%, #394545 65%)` : '#dee2e6',
+    color: currStep >= step ? '#dee2e6' : '#adb5bd'
   };
 
   const TitleTextStyle = {
     position: 'absolute', top: '75px', fontSize: '16px',
-    color: Number(currStep) >= Number(step) ? '#295252' : '#adb5bd'
+    color: currStep >= step ? '#295252' : '#adb5bd'
   };
 
   // components
 
   const ItemContainer = ({ children }) => {
+    // redux
+    const dispatch = useDispatch();
+    // render
     return (
       <Box
         data-title='Confirmation'
         sx={ ContainerStyle }
-        onClick={ async () => { if (step < currStep) return setCurrStep(step.toString()); } }>
+        onClick={ () => {
+          if (step < currStep)
+            return dispatch(setCurrStep(step));
+        } }>
         { children }
       </Box>
     );
@@ -39,8 +50,12 @@ function StepItem({ step, title, currStep, setCurrStep }) {
 
   return (
     <ItemContainer>
-      <Typography> { step } </Typography>
-      <Typography sx={ TitleTextStyle }> { title } </Typography>
+      <Typography>
+        { step }
+      </Typography>
+      <Typography sx={ TitleTextStyle }>
+        { title }
+      </Typography>
     </ItemContainer>
   );
 }

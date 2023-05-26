@@ -2,7 +2,9 @@
 import React from 'react';
 import { Box, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { useDispatch } from 'react-redux';
+// from file
+import { switchCartOpen } from './../../../../../../../redux/reducers/navbarSlice';
 
 // styles
 const ContainerStyle = {
@@ -11,10 +13,13 @@ const ContainerStyle = {
 };
 
 // rendering 
-function CloseBtnBox({ setDrawerOpen }) {
+function CloseBtnBox() {
+  // redux
+  const dispatch = useDispatch();
+  // render
   return (
     <Box sx={ ContainerStyle }>
-      <IconButton onClick={ async () => setDrawerOpen(false) }>
+      <IconButton onClick={ () => dispatch(switchCartOpen(false)) }>
         <CloseIcon />
       </IconButton>
     </Box>

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Divider } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+
 // from files
 import '../css/navbar.css';
 // from file
@@ -26,14 +26,12 @@ const DividerStyle = {
 // components
 
 const ShrinkedContainer = () => {
-  // state management
-  const [menuOpen, setMenuOpen] = useState(false);
   // rendering
   return (
     <>
-      <DrawerTrigger setMenuOpen={ setMenuOpen } />
-      <DrawerContainer menuOpen={ menuOpen } setMenuOpen={ setMenuOpen }>
-        <CloseBtnBox setMenuOpen={ setMenuOpen } />
+      <DrawerTrigger />
+      <DrawerContainer>
+        <CloseBtnBox />
         <LinksSection />
         <Divider sx={ DividerStyle } />
         <UserSection />

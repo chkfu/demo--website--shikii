@@ -1,14 +1,19 @@
 // from package
 import React from 'react';
 import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 
 // rendering
 
-function Progressing({ totalPage, currStep }) {
+function Progressing() {
+
+  // redux
+  const totalPage = useSelector(state => state.cart.totalPage);
+  const currStep = useSelector(state => state.cart.currStep);
 
   // declaration
-  const progressingPercentage = (Number(currStep) - 1) / (totalPage - 1);
+  const progressingPercentage = (currStep - 1) / (totalPage - 1);
 
   // styles
   const ContainerStyle = {

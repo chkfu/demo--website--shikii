@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 const serverless = require('serverless-http');
 const app = require('./app');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
 dotenv.config({ path: './config.env' });
 
@@ -20,13 +20,5 @@ mongoose
 
 
 
-// For http connecrtion
-// --------- BUG: Internal Error After AWS Lambda deployment --------
-// --------- localhost server listening => OK --------
+module.exports.handler = serverless(app);
 
-// module.exports.handler = serverless(app);
-
-const port = process.env.PORT;
-app.listen(port, () => {
-    console.log(`server is listening to port ${port}`);
-});

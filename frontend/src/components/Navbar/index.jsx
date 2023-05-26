@@ -1,5 +1,5 @@
 // from package
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AppBar, Box } from '@mui/material';
 // from file
 import BarLeft from './BarLeft/BarLeft';

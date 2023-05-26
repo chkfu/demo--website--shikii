@@ -1,5 +1,5 @@
 // from package
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
@@ -16,10 +16,6 @@ import ButtonSection from './components/drawer/ButtonSection';
 
 // Rendering
 function CartComponent() {
-
-  // state management
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
   // data fetching
   // get userId
   const userId = localStorage.getItem('userId');
@@ -40,10 +36,10 @@ function CartComponent() {
   // render
   return (
     <>
-      <CartTrigger setDrawerOpen={ setDrawerOpen } />
+      <CartTrigger />
 
-      <CartDrawerContainer drawerOpen={ drawerOpen } setDrawerOpen={ setDrawerOpen }>
-        <CloseBtnBox setDrawerOpen={ setDrawerOpen } />
+      <CartDrawerContainer>
+        <CloseBtnBox />
         <TitleSection />
 
         <DisplaySection >
@@ -67,7 +63,7 @@ function CartComponent() {
         </DisplaySection>
 
         <PriceSection finalTotal={ data.data.data.wishlist[0]?.finalTotal || Number(0).toFixed(2) } />
-        <ButtonSection setDrawerOpen={ false } />
+        <ButtonSection />
       </CartDrawerContainer >
     </>
   );

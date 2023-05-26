@@ -1,14 +1,16 @@
 // from package
 import React from 'react';
 import { IconButton } from '@mui/material';
+// from package
 
 
 // rendering
-function FunctionIcons({ children, setDrawerOpen }) {
+function FunctionIcons({ children }) {
+  // render
   return (
-    <IconButton onClick={ () => { setDrawerOpen(true); } }>
+    <IconButton>
       { children }
-    </IconButton>
+    </IconButton >
   );
 }
 

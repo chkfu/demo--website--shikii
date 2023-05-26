@@ -2,28 +2,32 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Typography } from '@mui/material';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { useSelector, useDispatch } from 'react-redux';
+// from file
+import { setBtnDisplay } from '../../../redux/reducers/scrollToTopSlice';
 
 
 // rednering
 
 function index({ scrollHandler }) {
 
+  // redux
+  const btnDisplay = useSelector(state => state.scrollToTop.btnDisplay);
+  const dispatch = useDispatch();
+
   // declaration
   const emergeLine = 600;
 
-  // scroll Y-axis tracking
-  const [toTopDisplay, setToTopDisplay] = useState(false);
-
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > emergeLine) setToTopDisplay(true);
-      if (window.scrollY < emergeLine) setToTopDisplay(false);
+      if (window.scrollY > emergeLine) dispatch(setBtnDisplay(true));
+      if (window.scrollY < emergeLine) dispatch(setBtnDisplay(false));
     });
   }, []);
 
   // styles
   const ButtonStyle = {
-    display: toTopDisplay ? 'static' : 'none',
+    display: btnDisplay ? 'static' : 'none',
     position: 'fixed',
     top: '85%',
     right: '5%',
@@ -59,6 +63,6 @@ function index({ scrollHandler }) {
 
     </Button>
   );
-}
+};
 
 export default index;

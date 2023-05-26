@@ -1,23 +1,26 @@
 // from package
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import { useDispatch } from 'react-redux';
 // from file
 import IconStyle from '../../ReusableItems/iconStyle';
 import IconContainer from '../../ReusableItems/IconContainer';
-import FunctionIcons from '../../ReusableItems/FunctionIcons';
 import FunctionTexts from '../../ReusableItems/FunctionTexts';
-
+import { switchCartOpen } from './../../../../../../redux/reducers/navbarSlice';
 
 // rendering
-function CartTrigger({ setDrawerOpen }) {
+function CartTrigger() {
+  // redux
+  const dispatch = useDispatch();
+  // render
   return (
     <Box>
       <IconContainer>
 
-        <FunctionIcons setDrawerOpen={ setDrawerOpen }>
+        <IconButton onClick={ () => dispatch(switchCartOpen(true)) }>
           <AddShoppingCartOutlinedIcon sx={ IconStyle } />
-        </FunctionIcons>
+        </IconButton>
 
         <FunctionTexts> Cart </FunctionTexts>
 

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 // from file
 import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
 import SelectFieldReuse from '../../../components/Formik/SelectFieldReuse';
 import ContainedButton from '../../../components/Button/ContainedButton';
 import SubmissionButton from '../../../components/Button/SubmissionButton';
+import { setCurrRegPage } from './../../../../redux/reducers/authenticationSlice';
 
 
 // formik and yup basic setting
@@ -45,17 +47,19 @@ const RegisterValidationSchema = Yup.object().shape({
 
 function RegisterFormik() {
 
-    const [currentPage, setCurrentPage] = useState('1');
-
+    // redux
+    const currRegPage = useSelector(state => state.authentication.currRegPage);
+    const dispatch = useDispatch();
+    // redirect
     const navigate = useNavigate();
-
+    // render
     return (
         <Formik
             initialValues={ RegisterInitialValues }
             validationSchema={ RegisterValidationSchema }
             onSubmit={ async (values) => {
                 await axios.post('http://127.0.0.1:3002/api/v1/users/signup', values);
-                setCurrentPage('3');
+                dispatch(setCurrRegPage('3'));
             } }>
 
             { ({ formik, values }) => (
@@ -64,7 +68,7 @@ function RegisterFormik() {
                     <Form>
 
                         <Box className='page-1' sx={ {
-                            display: currentPage === '1' ? 'static' : 'none'
+                            display: currRegPage === 1 ? 'static' : 'none'
                         } }>
                             <Box
                                 className='form--format--container'
@@ -100,7 +104,7 @@ function RegisterFormik() {
                             <Box
                                 sx={ { display: 'flex', justifyContent: 'right', mt: '10px', p: '10px' } }>
                                 <ContainedButton
-                                    text='Next' callbackFn={ async () => setCurrentPage('2') }>
+                                    text='Next' callbackFn={ () => { dispatch(setCurrRegPage(2)); } }>
                                     Next
                                 </ContainedButton>
                             </Box>
@@ -109,18 +113,19 @@ function RegisterFormik() {
                         </Box>
 
                         <Box className='page--2' sx={ {
-                            display: currentPage === '2' ? 'static' : 'none'
+                            display: currRegPage === 2 ? 'static' : 'none'
                         } }>
                             <InputFieldReuse name='email' type='email' label='Email Address' />
                             <InputFieldReuse name='password' type='password' label='Password' />
                             <InputFieldReuse name='passwordConfirm' type='password' label='Password Confirm' />
 
                             <SubmissionButton text='Register' />
+
                         </Box>
 
                         <Box className='page--3'
                             sx={ {
-                                display: currentPage === '3' ? 'static' : 'none'
+                                display: currRegPage === '3' ? 'static' : 'none'
                             } }>
 
                             <Box sx={ { height: '200px', display: 'flex', justifyContent: 'center', mt: '20px' } }>

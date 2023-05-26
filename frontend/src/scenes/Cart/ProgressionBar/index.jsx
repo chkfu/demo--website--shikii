@@ -9,30 +9,19 @@ import StepItem from './components/StepItem';
 
 
 // rendering
-function ProgressionBar({ totalPage, currStep, setCurrStep }) {
+function ProgressionBar() {
     return (
         <OuterContainer>
             <InnerContainer>
-                <Progressing
-                    currStep={ currStep }
-                    totalPage={ totalPage } />
+
+                <Progressing />
+
                 <ProgressStepSection>
-                    <StepItem
-                        step='1'
-                        title='Review'
-                        currStep={ currStep }
-                        setCurrStep={ setCurrStep } />
-                    <StepItem
-                        step='2'
-                        title='Contact'
-                        currStep={ currStep }
-                        setCurrStep={ setCurrStep } />
-                    <StepItem
-                        step='3'
-                        title='Pay'
-                        currStep={ currStep }
-                        setCurrStep={ setCurrStep } />
+                    <StepItem step='1' title='Review' />
+                    <StepItem step='2' title='Contact' />
+                    <StepItem step='3' title='Pay' />
                 </ProgressStepSection>
+
             </InnerContainer>
         </OuterContainer >
     );

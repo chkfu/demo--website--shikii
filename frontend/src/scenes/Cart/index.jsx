@@ -1,5 +1,5 @@
 // from package
-import React, { useState } from 'react';
+import React from 'react';
 // from file
 import SceneContainer from './../../components/Container/SceneContainer';
 import ProgressionBar from './ProgressionBar';
@@ -12,19 +12,13 @@ import PageSelector from './PageSelector';
 
 function Cart() {
 
-  // declaration
-  const totalPage = 3;
-
-  // state management
-  const [currStep, setCurrStep] = useState('1');
-
   // rendering
   return (
     <SceneContainer>
       <CartTopbar />
-      <ProgressionBar totalPage={ totalPage } currStep={ currStep } setCurrStep={ setCurrStep } />
-      <PageSelector currStep={ currStep } />
-      <ButtonColumn totalPage={ totalPage } currStep={ currStep } setCurrStep={ setCurrStep } />
+      <ProgressionBar />
+      <PageSelector />
+      <ButtonColumn />
     </SceneContainer >
   );
 }

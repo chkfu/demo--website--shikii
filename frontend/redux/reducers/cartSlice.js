@@ -9,13 +9,13 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addCurrStep: (state, action) => {
-      return state.currPage += 1;
+      state.currStep += 1;
     },
     reduceCurrStep: (state, action) => {
-      return state.currPage -= 1;
+      state.currStep -= 1;
     },
     setCurrStep: (state, action) => {
-      return state.currPage = action.payload;
+      state.currStep = action.payload;
     },
   }
 });

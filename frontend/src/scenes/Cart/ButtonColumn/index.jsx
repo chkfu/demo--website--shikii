@@ -1,6 +1,8 @@
 // from package
 import React from 'react';
 import { Box } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCurrStep, reduceCurrStep } from './../../../../redux/reducers/cartSlice';
 // from file
 import ContainedButton from '../../../components/Button/ContainedButton';
 
@@ -22,46 +24,56 @@ const ButtonSectionStyle = {
 
 // components 
 
-const BackBtn = ({ setCurrStep }) => {
+const BackBtn = () => {
+    // redux
+    const currStep = useSelector(state => state.cart.currStep);
+    const dispatch = useDispatch();
+    // render
     return (
         <ContainedButton
             text='Back'
-            callbackFn={
-                async () => setCurrStep(prev => (Number(prev) - 1).toString()) }
+            callbackFn={ () => dispatch(reduceCurrStep()) }
         />
     );
 };
 
-const NextBtn = ({ setCurrStep }) => {
+const NextBtn = () => {
+    // redux
+    const dispatch = useDispatch();
+    // render
     return (
         <ContainedButton
             text='Next'
-            callbackFn={
-                async () => setCurrStep(prev => (Number(prev) + 1).toString()) }
+            callbackFn={ () => dispatch(addCurrStep()) }
         />
     );
 };
 
-const SubmitBtn = ({ setCurrStep }) => {
+const SubmitBtn = () => {
+    // redux
+    const dispatch = useDispatch();
+    // render
     return (
         <ContainedButton
             type="submit"
             text='Next'
-            callbackFn={
-                async () => setCurrStep(prev => (Number(prev) + 1).toString()) } />
+            callbackFn={ () => dispatch(addCurrStep()) } />
     );
 };
 
 
 // rendering
 
-function ButtonColumn({ currStep, setCurrStep }) {
+function ButtonColumn() {
+    // redux
+    const currStep = useSelector(state => state.cart.currStep);
+    // render
     return (
         <Box sx={ ContainerStyle }>
             <Box sx={ ButtonSectionStyle }>
-                { currStep > "1" && <BackBtn setCurrStep={ setCurrStep } /> }
-                { currStep === "1" && <NextBtn setCurrStep={ setCurrStep } /> }
-                { currStep === "2" && <SubmitBtn setCurrStep={ setCurrStep } /> }
+                { currStep > 1 && <BackBtn /> }
+                { currStep === 1 && <NextBtn /> }
+                { currStep === 2 && <SubmitBtn /> }
             </Box>
         </Box >
     );

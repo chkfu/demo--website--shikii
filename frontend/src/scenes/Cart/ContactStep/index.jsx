@@ -5,7 +5,6 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 // from file
 import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
-import ButtonColumn from '../ButtonColumn';
 
 
 // formik and yup settings
@@ -85,7 +84,6 @@ const AddressForm = () => {
                             type='text' />
                     </Box>
                 </Box>
-                <ButtonColumn />
             </Form>
             ) }
         </Formik>

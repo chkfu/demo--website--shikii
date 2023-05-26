@@ -1,5 +1,5 @@
 // from package
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import { Formik, Form } from 'formik';
 import { useQuery } from 'react-query';
@@ -7,8 +7,6 @@ import axios from 'axios';
 // from file
 import SceneContainer from '../Container/SceneContainer';
 import InputFieldReuse from '../Formik/InputFieldReuse';
-
-
 
 // formik and yup basic settings
 const initialValues = {
@@ -56,17 +54,7 @@ function UserProfile() {
   if (isError) {
     console.log(error);
   }
-
-  // state management
-  const [fnameValue, setFnameValue] = useState();
-  const [lnameValue, setLnameValue] = useState();
-  const [genderValue, setGenderValue] = useState();
-  const [dateOfBirthValue, setDateOfBirthValue] = useState();
-
-
   // components
-
-
   const IconSection = () => {
     return (
       <Box sx={ IconSectionStyle }>

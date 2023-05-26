@@ -2,6 +2,9 @@
 import React from 'react';
 import { Box, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch } from 'react-redux';
+// from file
+import { switchMenuOpen } from '../../../../../../redux/reducers/navbarSlice';
 
 
 
@@ -19,13 +22,16 @@ const IconBtnBox = {
 
 // rendering
 
-function CloseBtnBox({ setMenuOpen }) {
+function CloseBtnBox() {
+  // redux
+  const dispatch = useDispatch();
+  // render
   return (
     <Box sx={ ContainerStyle } >
 
       <IconButton
         sx={ IconBtnBox }
-        onClick={ () => setMenuOpen(false) }>
+        onClick={ () => { dispatch(switchMenuOpen(false)); } }>
         <CloseIcon />
       </IconButton>
 
