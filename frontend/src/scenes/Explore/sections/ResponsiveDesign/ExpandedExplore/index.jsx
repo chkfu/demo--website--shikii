@@ -29,7 +29,7 @@ const DisplayContainerStyle = {
 
 // rendering
 
-function index({ data, sorter, setSorter, search, setSearch, page, currPage, setCurrPage, pageSize, setPageSize }) {
+function index({ data, refetch }) {
   return (
     <SceneContainer>
 
@@ -38,28 +38,13 @@ function index({ data, sorter, setSorter, search, setSearch, page, currPage, set
       <Box sx={ FormatContainerStyle }>
 
         <Box sx={ FilterContainerStyle }>
-          <FilterSection
-            sorter={ sorter }
-            setSorter={ setSorter }
-            search={ search }
-            setSearch={ setSearch }
-            page={ page }
-            setCurrPage={ setCurrPage }
-            pageSize={ pageSize }
-            setPageSize={ setPageSize } />
+          <FilterSection />
         </Box>
 
         <Box sx={ DisplayContainerStyle }>
           <DisplaySection
             data={ data }
-            sorter={ sorter }
-            setSorter={ setSorter }
-            search={ search }
-            setSearch={ setSearch }
-            currPage={ currPage }
-            setCurrPage={ setCurrPage }
-            pageSize={ pageSize }
-            setPageSize={ setPageSize } />
+            refetch={ refetch } />
         </Box>
 
       </Box >

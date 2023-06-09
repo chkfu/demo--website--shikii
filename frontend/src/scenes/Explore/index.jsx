@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { Box, CircularProgress } from '@mui/material';
+import React, { useContext } from 'react';
+import { CircularProgress } from '@mui/material';
 import { useQuery } from 'react-query';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 // from file
 import './css/explore.css';
@@ -15,21 +16,22 @@ function Explore() {
     // responsive design
     const screenWidth = useContext(ResponsiveContext);
 
-    // state managements
-    const [search, setSearch] = useState('');
-    const [sorter, setSorter] = useState('-createdat');
-    const [currPage, setCurrPage] = useState('1');
-    const [pageSize, setPageSize] = useState('12');
+    // redux
+    const currPage = useSelector(state => state.explore.currPage);
+    const sorter = useSelector(state => state.explore.sorter);
+    const pageSize = useSelector(state => state.explore.pageSize);
+    const dispatch = useDispatch();
 
     // fetching
-    const { data, isLoading, isError } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
+    const { data, isLoading, isError, refetch } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
         return await axios.get('http://127.0.0.1:3002/api/v1/products', {
             params: {
                 sort: sorter,
-                page: currPage,
-                limit: pageSize
+                page: currPage.toString(),
+                limit: pageSize.toString()
             }
-        });
+        }
+        );
     });
     if (isLoading) {
         return <CircularProgress color="inherit" />;
@@ -38,13 +40,17 @@ function Explore() {
         return <ErrorPage />;
     }
 
-
     // render
 
     return (
         screenWidth <= 1024 ? (
-            <ShrinkedExplore data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />) : (
-            <ExpandedExplore data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />)
+            <ShrinkedExplore
+                data={ data }
+                refetch={ refetch } />
+        ) : (
+            <ExpandedExplore
+                data={ data }
+                refetch={ refetch } />)
     );
 }
 

@@ -1,13 +1,14 @@
 // from package
 import React, { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 // from file
 import { ResponsiveContext } from '../../../../../App';
 import FormContainer from './components/FormContainer';
 import LabelBox from './components/LabelBox';
+import { setSorter } from './../../../../../../redux/reducers/exploreSlice';
 
 
 // style
-
 
 const ShrinkedSelectFromStyle = {
     height: '46px',
@@ -22,10 +23,14 @@ const ExpandedSelectFromStyle = {
 };
 
 
-function index({ sorter, setSorter }) {
+function index() {
 
     // responsive design
     const screenWidth = useContext(ResponsiveContext);
+
+    // redux
+    const sorter = useSelector(state => state.explore.sorter);
+    const dispatch = useDispatch();
 
     // rendering
     return (
@@ -35,7 +40,7 @@ function index({ sorter, setSorter }) {
 
             <select
                 value={ sorter }
-                onChange={ (e) => { setSorter(e.target.value); } }
+                onChange={ (event) => dispatch(setSorter(event.target.value)) }
                 style={ screenWidth <= 1024 ? ShrinkedSelectFromStyle : ExpandedSelectFromStyle }>
                 <option value='default'>Please Select</option>
                 <option value='createdAt'>Latest</option>

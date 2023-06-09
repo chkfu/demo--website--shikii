@@ -1,5 +1,5 @@
 // from package
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Link } from 'react-router-dom';
@@ -116,7 +116,7 @@ const ImageSection = ({ image }) => {
     );
 };
 
-const TitleSection = ({ brand, name }) => {
+const TitleSection = ({ id, brand, name }) => {
     return (
         <Link to='/explore' style={ LinkRemovedStyle }>
             <Grid sx={ TitleSectionGridStyle }>
@@ -159,17 +159,13 @@ const IconSection = ({ id, refetch }) => {
             {
                 withCredentials: true,
                 credentials: "include"
-            });
+            }).then(() => refetch());
     };
 
-    const clickHandler = () => {
-        fetchingWishlist();
-        refetch();
-    };
 
     return (
         <Grid sx={ IconSectionGridStyle }>
-            <IconButton onClick={ clickHandler }>
+            <IconButton onClick={ fetchingWishlist }>
                 <DeleteOutlineOutlinedIcon
                     sx={ DeleteIconStyle }
                 />
@@ -182,17 +178,19 @@ const IconSection = ({ id, refetch }) => {
 // rendering
 
 function SmallCartProductCardModel({ id, brand, name, price, image, quantity, refetch }) {
+
+    // render
     return (
         <CardContainer key={ id }>
             <ImageSection
-                image={ image } />
+                id={ id } image={ image } />
             <TitleSection
-                brand={ brand } name={ name } />
+                id={ id } brand={ brand } name={ name } />
             <PriceSection
                 price={ price } quantity={ quantity } />
             <IconSection
                 id={ id } refetch={ refetch } />
-        </CardContainer>
+        </CardContainer >
     );
 }
 

@@ -1,16 +1,20 @@
 // from package
 import React, { useContext } from 'react';
 import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 // from file
 import { ResponsiveContext } from '../../../../../../App';
 
 
 
 // rendering
-function LabelContainer({ children, filterHidden }) {
+function LabelContainer({ children }) {
 
   // responsive design
   const screenWidth = useContext(ResponsiveContext);
+
+  // redux
+  const filterHidden = useSelector(state => state.explore.filterHidden);
 
   // style
   const ContainerStyle = {

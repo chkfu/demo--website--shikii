@@ -56,7 +56,16 @@ function ProductSection() {
                                     keywords={ product.keywords }
                                     averageRating={ product.averageRating }
                                     numOfRating={ product.numOfRating }
-                                    callback={ () => console.log('add to cart') } />
+                                    callback={
+                                        async () => {
+                                            await axios.patch(
+                                                'http://127.0.0.1:3002/api/v1/users/wishlist',
+                                                {
+                                                    input: product._id,
+                                                    quantity: 1
+                                                },
+                                                { withCredentials: true, credentials: 'include' });
+                                        } } />
                             </div>);
                     })
                 }

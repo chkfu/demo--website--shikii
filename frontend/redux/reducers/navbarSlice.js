@@ -1,12 +1,12 @@
 // from package
 import { createSlice } from '@reduxjs/toolkit';
 
-
 export const navbarSlice = createSlice({
   name: 'navbar',
   initialState: {
     menuOpen: false,
-    cartOpen: false
+    cartOpen: false,
+    wishlistItems: []
   },
   reducers: {
     switchMenuOpen: (state, action) => {

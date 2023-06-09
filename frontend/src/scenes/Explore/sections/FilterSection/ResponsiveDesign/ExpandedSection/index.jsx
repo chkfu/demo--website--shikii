@@ -13,11 +13,11 @@ const ContainerStyle = {
 };
 
 // rendering
-function index({ sorter, setSorter, setSearch, setCurrPage, setPageSize }) {
+function index() {
   return (
     <Box sx={ ContainerStyle }>
-      <FilterSearchField setSearch={ setSearch } setSorter={ setSorter } setCurrPage={ setCurrPage } setPageSize={ setPageSize } />
-      <FilterSelectField sorter={ sorter } setSorter={ setSorter } />
+      <FilterSearchField />
+      <FilterSelectField />
       <FilterCategoriesLabel />
     </Box>
   );

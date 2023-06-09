@@ -2,7 +2,6 @@
 import React from 'react';
 import { Box, Rating, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 // from file
 import ContainedButton from '../Button/ContainedButton';
 

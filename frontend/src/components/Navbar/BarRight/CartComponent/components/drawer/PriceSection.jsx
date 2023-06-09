@@ -24,7 +24,7 @@ function PriceSection({ finalTotal }) {
   return (
     <Box sx={ ContainerStyle }>
       <Typography sx={ TextStyle }>
-        Price: { Number(finalTotal).toFixed(2) }
+        Price:  £ { Number(finalTotal).toFixed(2) }
       </Typography>
     </Box>
   );

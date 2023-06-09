@@ -1,5 +1,5 @@
 // from package
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Typography } from '@mui/material';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,7 +16,7 @@ function index({ scrollHandler }) {
   const dispatch = useDispatch();
 
   // declaration
-  const emergeLine = 600;
+  const emergeLine = 200;
 
   useEffect(() => {
     window.addEventListener('scroll', () => {

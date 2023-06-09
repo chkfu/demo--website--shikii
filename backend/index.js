@@ -3,6 +3,8 @@ const app = require('./app');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+// environment
+
 dotenv.config({ path: './config.env' });
 
 // mongodb connection
@@ -19,6 +21,13 @@ mongoose
     .then(() => console.log('Database connected successfully...'));
 
 
+// deployment
 
-module.exports.handler = serverless(app);
+const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log(`App is listening to the port ${port}`);
+});
+
+// module.exports.handler = serverless(app);
 

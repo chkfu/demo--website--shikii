@@ -13,15 +13,17 @@ import DisplaySection from './components/drawer/DisplaySection';
 import PriceSection from './components/drawer/PriceSection';
 import ButtonSection from './components/drawer/ButtonSection';
 
-
 // Rendering
 function CartComponent() {
+
   // data fetching
   // get userId
   const userId = localStorage.getItem('userId');
   // get wishlist
   const { data, isLoading, isError, refetch } = useQuery('fetching--wishlist--', async () => {
-    return await axios.get('http://127.0.0.1:3002/api/v1/users/wishlist', { withCredentials: true, credentials: "include" });
+    return await axios.get(
+      'http://127.0.0.1:3002/api/v1/users/wishlist',
+      { withCredentials: true, credentials: "include" });
   });
   if (isLoading) {
     return <></>;
@@ -36,33 +38,37 @@ function CartComponent() {
   // render
   return (
     <>
-      <CartTrigger />
+      <CartTrigger refetch={ refetch } />
 
       <CartDrawerContainer>
         <CloseBtnBox />
         <TitleSection />
 
-        <DisplaySection >
+        <DisplaySection className='display--section'>
           {
             data.data.data.wishlist.length > 0 ? null : <p>No item can be found</p>
           }
           {
             data.data.data.wishlist[0]?.wishlist.map((item) => {
-              return <CartProductCardModel
-                id={ item.product._id }
-                brand={ item.product.brand }
-                name={ item.product.name }
-                price={ item.product.price }
-                quantity={ item.count }
-                image={ item.product.coverImage }
-                count={ item.count }
-                refetch={ refetch } />;
+              return (
+                <div key={ item.product._id }>
+                  <CartProductCardModel
+                    id={ item.product._id }
+                    brand={ item.product.brand }
+                    name={ item.product.name }
+                    price={ item.product.price }
+                    quantity={ item.count }
+                    image={ item.product.coverImage }
+                    count={ item.count }
+                    refetch={ refetch } />
+                </div>
+              );
             })
           }
 
         </DisplaySection>
 
-        <PriceSection finalTotal={ data.data.data.wishlist[0]?.finalTotal || Number(0).toFixed(2) } />
+        <PriceSection finalTotal={ Number(data.data.data.wishlist[0]?.finalTotal) || Number(0).toFixed(2) } />
         <ButtonSection />
       </CartDrawerContainer >
     </>

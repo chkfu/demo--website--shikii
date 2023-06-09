@@ -3,9 +3,11 @@ import React from 'react';
 import { Box, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Formik, Form } from 'formik';
+import { useDispatch } from 'react-redux';
 // from file
 import InputFieldReuse from '../../../../../../../components/Formik/InputFieldReuse';
 import { searchProductsInitialValues, validationSchema } from './components/FormikInitiatives';
+import { setSearch, setCurrPage, setSorter, setPageSize } from './../../../../../../../../redux/reducers/exploreSlice';
 
 
 // styles
@@ -29,16 +31,21 @@ const IconButtonStyle = {
 
 // rendering
 
-function index({ setSorter, setCurrPage, setPageSize, setSearch }) {
+function index() {
+
+  // redux
+  const dispatch = useDispatch();
+
+  // render
   return (
     <Formik
       initialValues={ searchProductsInitialValues }
       validationSchema={ validationSchema }
       onSubmit={ async (values) => {
-        setSorter("-createdAt");
-        setCurrPage("1");
-        setPageSize("99999");
-        setSearch(values.searchItem);
+        dispatch(setSorter("-createdAt"));
+        dispatch(setCurrPage("1"));
+        dispatch(setPageSize("99999"));
+        dispatch(setSearch(values.searchItem));
       } }>
 
       { ({ formik, values }) => (

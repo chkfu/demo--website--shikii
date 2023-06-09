@@ -13,9 +13,9 @@ const IconStyle = {
 
 
 // rendering
-function index({ setFilterHidden }) {
+function index() {
     return (
-        <ButtonItem setFilterHidden={ setFilterHidden }>
+        <ButtonItem>
             <FilterListOutlinedIcon sx={ IconStyle } />
             <WrapText text='Filter' />
         </ButtonItem>

@@ -28,7 +28,7 @@ const ExpandedContainerStyle = {
 
 // rendering
 
-function index({ setSorter, setCurrPage, setPageSize, setSearch }) {
+function index() {
 
     // responsive design
     const screenWidth = useContext(ResponsiveContext);
@@ -37,11 +37,7 @@ function index({ setSorter, setCurrPage, setPageSize, setSearch }) {
     return (
         <Box sx={ screenWidth <= 1024 ? ShrinkedContainerStyle : ExpandedContainerStyle }>
             <SearchLabel screenWidth={ screenWidth } />
-            <SearchForm
-                setSearch={ setSearch }
-                setSorter={ setSorter }
-                setCurrPage={ setCurrPage }
-                setPageSize={ setPageSize } />
+            <SearchForm />
         </Box>
     );
 }

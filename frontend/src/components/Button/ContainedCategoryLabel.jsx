@@ -24,12 +24,13 @@ const ButtonStyle = {
 
 function ContainedCategoryLabel({ category }) {
 
+    // render
     return (
         <Button
             sx={ ButtonStyle }
             variant='contained'>
             { category }
-        </Button>
+        </Button >
     );
 }
 

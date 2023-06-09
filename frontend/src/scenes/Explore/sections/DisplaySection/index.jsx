@@ -1,28 +1,31 @@
 // from package
 import React from 'react';
+import { useSelector } from 'react-redux';
 // from file
 import PaginationSection from '../PaginationSection';
 import FilteringDisplay from './components/FilteringDisplay';
 import NonFilteringDisplay from './components/NonFilteringDisplay';
 
 // rendering
-function DisplaySection({ data, search, currPage, pageSize, setCurrPage, setPageSize }) {
+function DisplaySection({ data, refetch }) {
+
+    // redux
+    const search = useSelector(state => state.explore.search);
+
+    // render
     return (
         <>
             { search === "" ?
                 <NonFilteringDisplay
-                    data={ data } />
+                    data={ data }
+                    refetch={ refetch } />
                 : <FilteringDisplay
                     data={ data }
-                    search={ search } />
+                    refetch={ refetch } />
             }
 
             { search === "" &&
-                <PaginationSection
-                    currPage={ currPage }
-                    setCurrPage={ setCurrPage }
-                    pageSize={ pageSize }
-                    setPageSize={ setPageSize } /> }
+                <PaginationSection /> }
         </>
     );
 }

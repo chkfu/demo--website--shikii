@@ -1,7 +1,9 @@
 // from package
 import React from 'react';
 import { Box, Button } from '@mui/material';
-
+import { useDispatch } from 'react-redux';
+// from file
+import { setFilterHidden } from '../../../../../../../redux/reducers/exploreSlice';
 
 
 // styles
@@ -24,13 +26,18 @@ const ButtonStyle = {
 
 
 // rendering
-function ButtonSection({ setFilterHidden }) {
+function ButtonSection() {
+
+  // redux
+  const dispatch = useDispatch();
+
+  // render
   return (
     <Box sx={ SectionContainerStyle }>
       <Button
         variant='outlined'
         sx={ ButtonStyle }
-        onClick={ async () => setFilterHidden(true) }>
+        onClick={ async () => dispatch(setFilterHidden(true)) }>
         Cancel
       </Button>
     </Box>

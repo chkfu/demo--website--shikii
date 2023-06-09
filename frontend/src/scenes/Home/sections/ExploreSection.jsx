@@ -17,6 +17,7 @@ import ErrorPage from '../../ErrorPage';
 
 function ExploreSection() {
 
+  // responsive design
   let displayValue;
   const screenWidth = useContext(ResponsiveContext);
   if (screenWidth > 1024) {
@@ -71,7 +72,7 @@ function ExploreSection() {
               {
                 data.data.data.products.map((product, index) => (
 
-                  index < displayValue ? (
+                  index < displayValue && index !== 0 && (
                     <div key={ product._id }>
                       <ProductCardModel
                         key={ product._id }
@@ -83,9 +84,18 @@ function ExploreSection() {
                         keywords={ product.keywords }
                         averageRating={ product.averageRating }
                         numOfRating={ product.numOfRating }
-                        callback={ () => console.log('add to cart') }
+                        callback={ async () => {
+                          await axios.patch(
+                            'http://127.0.0.1:3002/api/v1/users/wishlist',
+                            {
+                              input: product._id,
+                              quantity: 1
+                            },
+                            { withCredentials: true, credentials: 'include' });
+                        } }
                       />
-                    </div>) : (<></>)
+                    </div>
+                  )
                 ))
               }
             </HomePairCardsContiner>

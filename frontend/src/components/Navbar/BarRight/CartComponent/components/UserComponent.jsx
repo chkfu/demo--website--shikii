@@ -20,7 +20,11 @@ function UserComponent() {
 
   // functions  
   const LogoutHandler = () => {
+    // terminate storage and cookies
     localStorage.clear();
+    // refresh + redirect
+    navigate('/');
+    return window.location.reload();
   };
 
   // rendering
@@ -43,12 +47,7 @@ function UserComponent() {
 
       {/* Logout */ }
 
-      <div
-        onClick={ async () => {
-          localStorage.clear();
-          browser.cookies.remove({ name: 'jwt' });
-          return navigate('/');
-        } } >
+      <div onClick={ LogoutHandler } >
         <IconContainer>
           <FunctionIcons>
             <LogoutOutlinedIcon sx={ iconStyle } />
@@ -57,7 +56,7 @@ function UserComponent() {
         </IconContainer>
       </div>
 
-    </Box>
+    </Box >
   );
 }
 

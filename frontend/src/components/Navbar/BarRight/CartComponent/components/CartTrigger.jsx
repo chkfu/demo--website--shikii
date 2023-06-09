@@ -10,22 +10,27 @@ import FunctionTexts from '../../ReusableItems/FunctionTexts';
 import { switchCartOpen } from './../../../../../../redux/reducers/navbarSlice';
 
 // rendering
-function CartTrigger() {
+function CartTrigger({ refetch }) {
+
   // redux
   const dispatch = useDispatch();
+
   // render
   return (
     <Box>
       <IconContainer>
 
-        <IconButton onClick={ () => dispatch(switchCartOpen(true)) }>
+        <IconButton onClick={ () => {
+          dispatch(switchCartOpen(true));
+          refetch();
+        } }>
           <AddShoppingCartOutlinedIcon sx={ IconStyle } />
         </IconButton>
 
         <FunctionTexts> Cart </FunctionTexts>
 
       </IconContainer>
-    </Box>
+    </Box >
   );
 }
 

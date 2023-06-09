@@ -22,10 +22,6 @@ function ProductPurchaseColumn({ data }) {
         <Typography sx={ { ml: '20px', fontSize: '24px' } }>£{ data.data.data.product.price }</Typography>
       </Box>
 
-      {/* ********** TO BE SOLVED *********** */ }
-      {/* ********** 1. how to fetching different routes at the same time *********** */ }
-      {/* ********** 2. how to push new item to user wishlist *********** */ }
-
       <Formik
         initialValues={ initialValues }
         onSubmit={ async () => {
@@ -57,7 +53,7 @@ function ProductPurchaseColumn({ data }) {
                   color: 'white',
                   ':hover': { backgroundColor: '#1F3D3D' }
                 } }
-                onClick={ async () => setNumOfPurchase(1) }>
+              >
                 Add to cart
               </Button>
 

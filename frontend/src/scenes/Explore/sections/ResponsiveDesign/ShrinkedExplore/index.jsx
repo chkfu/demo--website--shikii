@@ -22,27 +22,21 @@ const DisplayContainerStyle = {
 
 // rendering
 
-function index({ data, sorter, setSorter, search, setSearch, currPage, setCurrPage, pageSize, setPageSize }) {
+function index({ data, sorter, setSorter, search, setSearch, currPage, setCurrPage, pageSize, setPageSize, refetch }) {
   return (
     <SceneContainer>
 
       <AdvertisementSection />
 
       <Box sx={ FilterContainerStyle }>
-        <FilterSection
-          sorter={ sorter }
-          setSorter={ setSorter }
-          search={ search }
-          setSearch={ setSearch }
-          currPage={ currPage }
-          setCurrPage={ setCurrPage }
-          pageSize={ pageSize }
-          setPageSize={ setPageSize } />
+        <FilterSection />
       </Box>
 
       <Box
         sx={ DisplayContainerStyle }>
-        <DisplaySection data={ data } sorter={ sorter } setSorter={ setSorter } search={ search } setSearch={ setSearch } currPage={ currPage } setCurrPage={ setCurrPage } pageSize={ pageSize } setPageSize={ setPageSize } />
+        <DisplaySection
+          data={ data }
+          refetch={ refetch } />
       </Box>
 
     </SceneContainer >

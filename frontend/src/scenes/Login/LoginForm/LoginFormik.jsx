@@ -40,11 +40,14 @@ function LoginFormik() {
                     return await axios.post('http://127.0.0.1:3002/api/v1/users/login', values, { withCredentials: true, credentials: 'include' })
                         .then((res) => {
                             if (res.data.status === 'success') {
+                                // memorisation, avoid frequent data fetching
                                 localStorage.clear();
                                 localStorage.setItem('loginStatus', true);
                                 localStorage.setItem('userId', res.data.data.user._id);
                                 localStorage.setItem('userIcon', res.data.data.user.coverImage);
-                                return navigate('/');
+                                // refresh + redirect
+                                navigate('/');
+                                return window.location.reload();
                             }
                         });
                 }
