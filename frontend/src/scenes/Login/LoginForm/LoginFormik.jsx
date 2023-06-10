@@ -7,8 +7,8 @@ import axios from 'axios';
 // from file
 import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
 import SubmissionButton from '../../../components/Button/SubmissionButton';
-// formik and yup basic setting
 
+// formik and yup basic setting
 const LoginInitialValues = {
     email: "",
     password: ""
