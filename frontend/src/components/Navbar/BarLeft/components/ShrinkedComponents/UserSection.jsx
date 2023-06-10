@@ -1,6 +1,8 @@
 // from package
 import React from 'react';
 import { List, ListItem, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // from file
 import BarLeftItemLink from '../../ReusableItems/BarLeftItemLink';
 
@@ -18,6 +20,8 @@ const LogoutBtnStyle = {
   cursor: 'pointer'
 };
 
+const allCookies = document.cookie;
+console.log(allCookies);
 
 // components
 
@@ -32,6 +36,7 @@ const Subtitle = () => {
 };
 
 const LoginBtn = () => {
+
   return (
     <ListItem>
       <BarLeftItemLink
@@ -43,16 +48,21 @@ const LoginBtn = () => {
 
 const LogoutBtn = () => {
   // function
-  const LogoutFunction = async () => {
+  const navigate = useNavigate();
+
+  const LogoutHandler = async () => {
+    // terminate storage and cookies]
     localStorage.clear();
-    browser.cookies.remove({ name: 'jwt' });
-    return navigate('/');
+    await axios.get('http://127.0.0.1:3002/api/v1/users/logout', { credentials: 'include', withCredentials: true });
+    // refresh + redirect
+    navigate('/');
+    return window.location.reload();
   };
   // render
   return (
     <ListItem
       sx={ LogoutBtnStyle }
-      onClick={ LogoutFunction }>
+      onClick={ LogoutHandler }>
       Logout
     </ListItem >
   );
@@ -82,14 +92,18 @@ const CartBtn = () => {
 // rendering
 
 function UserSection() {
+
+  // get login sattus
+  localStorage.getItem('loginStatus');
+
   return (
     <>
       <Subtitle />
 
       <List sx={ ListStyle } >
-        { !loginStatus ? <LoginBtn /> : <LogoutBtn /> }
+        { loginStatus ? <LogoutBtn /> : <LoginBtn /> }
         <FAQBtn />
-        <CartBtn />
+        { loginStatus && <CartBtn /> }
       </List>
     </>
   );

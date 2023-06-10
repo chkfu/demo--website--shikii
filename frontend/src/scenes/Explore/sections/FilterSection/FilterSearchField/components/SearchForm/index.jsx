@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 // from file
 import InputFieldReuse from '../../../../../../../components/Formik/InputFieldReuse';
 import { searchProductsInitialValues, validationSchema } from './components/FormikInitiatives';
-import { setSearch, setCurrPage, setSorter, setPageSize } from './../../../../../../../../redux/reducers/exploreSlice';
+import { setSearch, setCurrPage, setSorter, setPageLimit } from './../../../../../../../../redux/reducers/exploreSlice';
 
 
 // styles
@@ -43,8 +43,8 @@ function index() {
       validationSchema={ validationSchema }
       onSubmit={ async (values) => {
         dispatch(setSorter("-createdAt"));
-        dispatch(setCurrPage("1"));
-        dispatch(setPageSize("99999"));
+        dispatch(setCurrPage(1));
+        dispatch(setPageLimit(12));
         dispatch(setSearch(values.searchItem));
       } }>
 

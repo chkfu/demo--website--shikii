@@ -18,7 +18,7 @@ function DrawerTrigger() {
   return (
     <IconButton
       sx={ IconStyle }
-      onClick={ () => { dispatch(switchMenuOpen('true')); } }>
+      onClick={ () => { dispatch(switchMenuOpen(true)); } }>
       <MenuIcon />
     </IconButton>
   );

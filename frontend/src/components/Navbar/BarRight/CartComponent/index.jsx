@@ -16,10 +16,9 @@ import ButtonSection from './components/drawer/ButtonSection';
 // Rendering
 function CartComponent() {
 
-  // data fetching
-  // get userId
-  const userId = localStorage.getItem('userId');
   // get wishlist
+  // identify users by specific tokens
+
   const { data, isLoading, isError, refetch } = useQuery('fetching--wishlist--', async () => {
     return await axios.get(
       'http://127.0.0.1:3002/api/v1/users/wishlist',

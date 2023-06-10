@@ -53,6 +53,7 @@ function ProductPurchaseColumn({ data }) {
                   color: 'white',
                   ':hover': { backgroundColor: '#1F3D3D' }
                 } }
+
               >
                 Add to cart
               </Button>

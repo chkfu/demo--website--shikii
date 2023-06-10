@@ -14,6 +14,22 @@ const signinToken = (id) => {
   });
 };
 
+exports.logout = (req, res) => {
+
+  const cookieOptions = {
+    httpOnly: true,
+    secure: true,
+    expires: new Date(Date.now())
+  };
+
+  res.cookie('jwt', '', cookieOptions);
+  res.cookie('userId', '', cookieOptions);
+
+  console.log(',.,.....', res.cookie);
+
+  res.status(200).json({ status: res.cookie });
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
 
   const newUser = await User.create({
@@ -62,6 +78,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   const cookieOptions = {
     httpOnly: true,
+    secure: true,
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
   };
 
@@ -70,8 +87,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
   req.user = user;
   res.locals.user = user;
-
-  console.log('Please note that Login passed...................');
 
   res.status(200).json({
     status: 'success',

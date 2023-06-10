@@ -21,11 +21,6 @@ app.use(morgan('dev'));
 
 app.use(cors({ origin: true, credentials: true }));
 
-// middleware   
-app.use((req, res, next) => {
-    next();
-});
-
 
 // route
 app.use('/api/v1/articles', articleRouter);

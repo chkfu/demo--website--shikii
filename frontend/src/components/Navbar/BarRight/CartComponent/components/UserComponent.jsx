@@ -3,6 +3,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // from file
 import iconStyle from '../../ReusableItems/iconStyle';
 import IconContainer from '../../ReusableItems/IconContainer';
@@ -19,13 +20,16 @@ function UserComponent() {
   const userIcon = localStorage.getItem('userIcon');
 
   // functions  
-  const LogoutHandler = () => {
-    // terminate storage and cookies
+  const LogoutHandler = async () => {
+    // terminate storage and cookies]
     localStorage.clear();
+    await axios.get('http://127.0.0.1:3002/api/v1/users/logout', { credentials: 'include', withCredentials: true });
     // refresh + redirect
     navigate('/');
-    return window.location.reload();
+    window.location.reload();
   };
+
+
 
   // rendering
   return (

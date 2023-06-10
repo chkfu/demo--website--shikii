@@ -19,16 +19,16 @@ function Explore() {
     // redux
     const currPage = useSelector(state => state.explore.currPage);
     const sorter = useSelector(state => state.explore.sorter);
-    const pageSize = useSelector(state => state.explore.pageSize);
+    const pageLimit = useSelector(state => state.explore.pageLimit);
     const dispatch = useDispatch();
 
     // fetching
-    const { data, isLoading, isError, refetch } = useQuery(['fetch--all-products', currPage, sorter, pageSize], async () => {
+    const { data, isLoading, isError, refetch } = useQuery(['fetch--all-products', currPage, sorter, pageLimit], async () => {
         return await axios.get('http://127.0.0.1:3002/api/v1/products', {
             params: {
                 sort: sorter,
-                page: currPage.toString(),
-                limit: pageSize.toString()
+                page: currPage,
+                limit: pageLimit
             }
         }
         );

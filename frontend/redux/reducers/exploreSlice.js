@@ -7,7 +7,7 @@ export const exploreSlice = createSlice({
     search: '',
     sorter: '-createdat',
     currPage: 1,
-    pageSize: 12,
+    pageLimit: 12,
     filterHidden: true
   },
   reducers: {
@@ -20,7 +20,7 @@ export const exploreSlice = createSlice({
     setCurrPage: (state, action) => {
       state.currPage = action.payload;
     },
-    setPageSize: (state, action) => {
+    setPageLimit: (state, action) => {
       state.pageSize = action.payload;
     },
     resetFilter: (state, action) => {
@@ -35,6 +35,6 @@ export const exploreSlice = createSlice({
   }
 });
 
-export const { setSearch, setSorter, setCurrPage, setPageSize, resetFilter, setFilterHidden } = exploreSlice.actions;
+export const { setSearch, setSorter, setCurrPage, setPageLimit, resetFilter, setFilterHidden } = exploreSlice.actions;
 
 export default exploreSlice.reducer;
