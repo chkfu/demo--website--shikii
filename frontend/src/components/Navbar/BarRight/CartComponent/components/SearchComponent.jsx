@@ -20,7 +20,7 @@ const LinkStyle = {
 function SearchComponent() {
   return (
     <Link
-      to='/testingAnnouncement'
+      to='/FAQ'
       style={ LinkStyle }>
 
       <IconContainer>

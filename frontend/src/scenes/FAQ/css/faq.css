@@ -1,0 +1,7 @@
+.faq--advertisement--container {
+  background-image: url('./../images/faq/faq-banner-photo01.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(0.7)
+}

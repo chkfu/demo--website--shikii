@@ -6,6 +6,7 @@ import authenticationSlice from './reducers/authenticationSlice';
 import exploreSlice from './reducers/exploreSlice';
 import navbarSlice from './reducers/navbarSlice';
 import scrollToTopSlice from './reducers/scrollToTopSlice';
+import faqSlice from './reducers/faqSlice';
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
     authentication: authenticationSlice,
     explore: exploreSlice,
     navbar: navbarSlice,
-    scrollToTop: scrollToTopSlice
+    scrollToTop: scrollToTopSlice,
+    faq: faqSlice,
   }
 });

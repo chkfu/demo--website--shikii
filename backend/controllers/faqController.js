@@ -23,6 +23,5 @@ exports.createNewFAQ = catchAsync(async (req, res, next) => {
     status: 'sucess',
     data: newData
   });
-  next();
 })
 

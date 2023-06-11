@@ -72,7 +72,7 @@ const FAQBtn = () => {
   return (
     <ListItem>
       <BarLeftItemLink
-        to='/testingAnnouncement'
+        to='/FAQ'
         title='FAQ' />
     </ListItem>
   );
