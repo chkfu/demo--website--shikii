@@ -1,4 +1,4 @@
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const app = require('./app');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');

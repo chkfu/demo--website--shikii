@@ -11,7 +11,7 @@ import { setQuestionSelection } from './../../../../redux/reducers/faqSlice';
 const HiddenContentStyle = {
   display: 'none',
   opacity: '0',
-  transition: 'opacity 1s'
+  height: '100%',
 };
 
 const ShowContainerStyle = {
@@ -19,19 +19,21 @@ const ShowContainerStyle = {
   width: '80vw',
   maxWidth: '800px',
   opacity: '1',
-  transition: 'opacity 1s'
+  height: '100%',
 };
 
 const QuestionContainerStyle = {
   backgroundColor: '#5E5D3B',
   padding: '10px 20px',
   margin: '5px',
-  width: '100%'
+  width: '100%',
+  transition: 'all 2s'
 };
 
 const QuestionUpperBoxStyle = {
   display: 'flex',
   alignItems: 'center',
+  transition: 'all 2s',
 };
 
 const QuestionTextStyle = {
@@ -39,18 +41,21 @@ const QuestionTextStyle = {
   width: '90%',
   fontSize: '16px',
   textAlign: 'justify',
-  color: '#DBDAC9'
+  color: '#DBDAC9',
+  transition: 'all 2s',
 };
 
 const IconButtonStyle = {
   width: '8%',
-  height: 'auto'
+  height: 'auto',
+  transition: 'all 2s',
 };
 
 const AnswerBoxStyle = {
   backgroundColor: '#DBDAC9',
   margin: '5px',
   padding: '10px',
+  transition: 'all 2s',
 };
 
 const AnswerTextStyle = {

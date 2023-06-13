@@ -9,6 +9,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const articleRouter = require('./routes/articleRoute');
 const productRouter = require('./routes/productRoute');
 const userRouter = require('./routes/userRoute');
+const reviewRouter = require('./routes/reviewRoute');
 const faqRouter = require('./routes/faqRoute');
 
 
@@ -28,6 +29,7 @@ app.use('/api/v1/articles', articleRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/faq', faqRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 // error handling
 app.all('*', (req, res, next) => {

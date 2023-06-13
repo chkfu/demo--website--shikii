@@ -28,9 +28,11 @@ function FullFAQMenu({ children }) {
   const categorySelected = useSelector(state => state.faq.categorySelected);
   // render
   return (
-    <List sx={ categorySelected === 'none' ? NonSelectedStyle : SelectedStyle }>
-      { children }
-    </List >
+    <>
+      <List sx={ categorySelected === 'none' ? NonSelectedStyle : SelectedStyle }>
+        { children }
+      </List >
+    </>
   );
 }
 

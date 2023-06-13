@@ -77,6 +77,12 @@ const userSchema = new mongoose.Schema(
 
 // middleware
 
+userSchema.virtual('review', {
+    ref: 'Review',
+    foreignField: 'user',
+    localField: '_id'
+});
+
 userSchema.virtual('wishlist', {
     ref: 'Wishlist',
     foreignField: 'user',
