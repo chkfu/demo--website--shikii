@@ -41,11 +41,20 @@ function ProductLayout() {
     <>
       <Box sx={ { p: screenWidth <= 1024 ? '20px 40px' : '20px 18vw' } }>
 
-        <AbstractBox id={ id } data={ data } screenWidth={ screenWidth } scrollToReview={ scrollToReview } />
-        <InfoBox id={ id } data={ data } screenWidth={ screenWidth } />
+        <AbstractBox
+          id={ id }
+          data={ data }
+          screenWidth={ screenWidth }
+          scrollToReview={ scrollToReview } />
+        <InfoBox
+          id={ id }
+          data={ data }
+          screenWidth={ screenWidth } />
 
         <div ref={ commentRef }>
-          <CommentBox id={ id } data={ data } screenWidth={ screenWidth } />
+          <CommentBox
+            id={ id }
+            screenWidth={ screenWidth } />
         </div>
 
       </Box>

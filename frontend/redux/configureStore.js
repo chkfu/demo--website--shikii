@@ -7,6 +7,7 @@ import exploreSlice from './reducers/exploreSlice';
 import navbarSlice from './reducers/navbarSlice';
 import scrollToTopSlice from './reducers/scrollToTopSlice';
 import faqSlice from './reducers/faqSlice';
+import pageLayoutSlice from './reducers/pageLayoutSlice';
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     navbar: navbarSlice,
     scrollToTop: scrollToTopSlice,
     faq: faqSlice,
+    layout: pageLayoutSlice
   }
 });

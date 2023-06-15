@@ -16,6 +16,9 @@ const signinToken = (id) => {
 
 exports.logout = (req, res) => {
 
+  req.user = null;
+  res.locals.user = null;
+
   const cookieOptions = {
     httpOnly: true,
     secure: true,
@@ -25,7 +28,10 @@ exports.logout = (req, res) => {
   res.cookie('jwt', '', cookieOptions);
   res.cookie('userId', '', cookieOptions);
 
-  res.status(200).json({ status: res.cookie });
+  res.status(200).json({
+    status: 'success',
+    data: null
+  });
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -100,17 +106,14 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.protect = catchAsync(async (req, res, next) => {
 
 
-  console.log('req.cookie', req.cookie);
-
-
   let token;
   // adopted
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  }
   if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
-
-
-  console.log('token', token);
 
   if (!token) return next(new AppError('Failed to access without login', 401));
 
@@ -119,18 +122,12 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // check user
   const currentUser = await User.findById(decoded.id);
-
-
   if (!currentUser) {
     return next(new AppError('Token is not existed', 401));
   }
 
   // define user
   req.user = currentUser;
-  res.locals.user = currentUser;
-
-
-  console.log(req.user);
 
   next();
 });

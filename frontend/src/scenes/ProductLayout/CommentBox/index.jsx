@@ -1,32 +1,51 @@
 // from package
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 // from file
 import SubSectionContainer from '../reusable/SubSectionContainer';
-import CommentCardModel from '../../../components/Cards/CommentCardModel';
+import WriteComment from './component/WriteComment';
+import ResultStatement from './component/ResultStatement';
+import ResultDisplay from './component/ResultDisplay';
 
 
-function CommentBox({ data }) {
+// rendering
+
+function CommentBox({ id }) {
+
+  // data fetching
+  const { data, isLoading, isError } = useQuery('comment-fetching', async () => {
+    return await axios.get(`http://127.0.0.1:3002/api/v1/products/${id}/reviews`,
+      {
+        credentials: true,
+        withCredentials: 'include'
+      });
+  });
+  if (isLoading) return <></>;
+  if (isError) return <></>;
+  if (!data) return <></>;
+
+  // function
+  const CommentBoxExistence = () => {
+    // check if user login
+    const currUser = localStorage.getItem('userId');
+    // check if previous comment from user
+    const currUserFilter = data.data.data.filter(item => item.user._id === currUser);
+    // return false, comment box disappear
+    return currUser && currUserFilter.length > 0;
+  };
+
+  // render
   return (
     <SubSectionContainer title='Comments'>
-
-      <Box sx={ { p: '0 45px' } }>
-        <Typography sx={ { color: '#666666', fontSize: '16px', textAlign: 'left' } }>3 results are found.</Typography>
-        <Typography sx={ { color: 'red', fontSize: '12px', textAlign: 'left' } }>
-          Commenting function is currently not available.
-          <br />
-          For your information, please note that hard codes are displaying.
-        </Typography>
-      </Box>
-
-      <Box sx={ { p: '10px 40px' } }>
-        <CommentCardModel data={ data } />
-        <CommentCardModel data={ data } />
-        <CommentCardModel data={ data } />
-      </Box>
-
+      <ResultStatement data={ data } />
+      { CommentBoxExistence() === false && <WriteComment data={ data } id={ id } /> }
+      <ResultDisplay data={ data } />
     </SubSectionContainer >
   );
 }
 
 export default CommentBox;
+
+
+

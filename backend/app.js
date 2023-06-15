@@ -29,7 +29,7 @@ app.use('/api/v1/articles', articleRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/faq', faqRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/reviews', reviewRouter);
+
 
 // error handling
 app.all('*', (req, res, next) => {

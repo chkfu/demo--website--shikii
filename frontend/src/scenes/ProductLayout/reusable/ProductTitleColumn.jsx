@@ -27,8 +27,15 @@ function ProductTitleColumn({ data, scrollToReview }) {
 
       <Box sx={ { display: 'flex', alignItems: 'center', mt: '10px' } }>
         <Rating value={ data.data.data.product.averageRating } readOnly />
-        <Typography sx={ { ml: '10px', color: '#666666', fontSize: '18px' } }>{ data.data.data.product.averageRating }</Typography>
-        <Typography sx={ { ml: '10px', color: '#666666', fontSize: '18px' } }>({ data.data.data.product.numOfRating })</Typography>
+        <Typography sx={ { ml: '10px', color: '#666666', fontSize: '18px' } }>
+          { data.data.data.product.averageRating.toFixed(1) }
+        </Typography>
+        <Typography sx={ { ml: '10px', color: '#666666', fontSize: '18px' } }>
+          (
+          { data.data.data.product.numOfRating }
+          { data.data.data.product.numOfRating < 2 ? ' review' : ' reviews' }
+          )
+        </Typography>
       </Box>
 
       {/* trigger */ }

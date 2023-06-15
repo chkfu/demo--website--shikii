@@ -32,13 +32,13 @@ const reviewSchema = new mongoose.Schema({
     toObject: { virtuals: true }
   });
 
-reviewSchema.pre('/^find/', function (next) {
+
+reviewSchema.index({ product: 1, user: 1 }, { unique: true });
+
+reviewSchema.pre('find', function (next) {
   this.populate({
     path: "user",
-    select: '_id firstName lastName'
-  }).populate({
-    path: "product",
-    select: '_id'
+    select: 'firstName lastName'
   });
   next();
 });
@@ -60,15 +60,16 @@ reviewSchema.statics.calcRating = async function (productId) {
       }
     }
   ]);
+
   //  update
   if (data.length > 0) {
-    Product.findOneAndUpdate(productId, {
-      numOfRating: data[0].numberOfRating,
-      averageRating: data[0].numberOfRating
+    await Product.findByIdAndUpdate(productId, {
+      numOfRating: data[0].numOfRating,
+      averageRating: data[0].averageRating
     });
   }
   else {
-    Product.findOneAndUpdate(productId, {
+    await Product.findByIdAndUpdate(productId, {
       numOfRating: 0,
       averageRating: 0
     });
@@ -76,19 +77,20 @@ reviewSchema.statics.calcRating = async function (productId) {
 };
 
 // ratings - create(save) renewal
-reviewSchema.pre('save', function () {
+reviewSchema.post('save', function () {
+  console.log(this);
   this.constructor.calcRating(this.product);
 });
 
-// ratings - update, dekete(find renewal
+// ratings - update, delete(find) renewal
 
 reviewSchema.pre('/^findOneAnd/', async function (next) {
-  const storedData = await this.findOne();
+  this.storedData = await this.findOne();
   next();
 });
 
-reviewSchema.post('/^findOneAnd/', function () {
-  this.storedData.constructor.calRating(this.product);
+reviewSchema.post('/^findOneAnd/', async function () {
+  await this.storedData.constructor.calcRating(this.storedData.product);
 });
 
 

@@ -6,11 +6,11 @@ import { Box, Typography, Rating } from '@mui/material';
 // styles
 
 const ContainerStyle = {
-  minHeight: '200px',
   m: '10px 0',
-  p: '40px 60px',
+  p: '20px 40px',
   backgroundColor: '#ecece2',
-  boxShadow: '1'
+  boxShadow: '1',
+  boxShadow: 2
 };
 
 const CommentCardTopStyle = {
@@ -58,35 +58,35 @@ const CommentDescriptionStyle = {
 
 // components
 
-const CommentCardTop = (data) => {
+const CommentCardTop = ({ name, date }) => {
   return (
     <Box sx={ CommentCardTopStyle }>
       <Typography sx={ CommentUserNameStyle }>
-        UserName
+        { name }
       </Typography>
       <Typography sx={ CommnetDateStyle }>
-        03/02/2023
+        { date.toString().slice(0, 10).split('-').reverse().join('/') }
       </Typography>
     </Box>
   );
 };
 
-const CommentCardMiddle = ({ data }) => {
+const CommentCardMiddle = ({ rate }) => {
   return (
     <Box sx={ CommentCardMiddleStyle }>
-      <Rating value={ 0 } readOnly />
+      <Rating value={ Number(rate) } readOnly />
       <Typography sx={ CommentRateTextStyle }>
-        0
+        { rate }
       </Typography>
     </Box>
   );
 };
 
-const CommentCardBottom = ({ data }) => {
+const CommentCardBottom = ({ review }) => {
   return (
     <Box sx={ CommentCardBottomStyle }>
       <Typography sx={ CommentDescriptionStyle }>
-        { data.data.data.product.description }
+        { review }
       </Typography>
     </Box>
   );
@@ -95,12 +95,12 @@ const CommentCardBottom = ({ data }) => {
 
 // rendering
 
-function CommentCardModel({ data }) {
+function CommentCardModel({ name, date, rate, review }) {
   return (
     <Box sx={ ContainerStyle }>
-      <CommentCardTop data={ data } />
-      <CommentCardMiddle data={ data } />
-      <CommentCardBottom data={ data } />
+      <CommentCardTop name={ name } date={ date } />
+      <CommentCardMiddle rate={ rate } />
+      <CommentCardBottom review={ review } />
     </Box>
   );
 }

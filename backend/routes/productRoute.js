@@ -2,7 +2,10 @@ const express = require('express');
 const productController = require('./../controllers/productController');
 const reviewController = require('./../controllers/reviewController');
 const authController = require('./../controllers/authController');
+const reviewRouter = require('./reviewRoute');
+
 const router = express.Router();
+
 
 router
     .route('/get-new-items')
@@ -15,13 +18,11 @@ router
 
 router
     .route('/:id')
-    .get(productController.getProduct)
-    .patch(productController.updateProduct)
-    .delete(productController.deleteProduct);
+    .get(productController.getProduct);
 
-router.route('/:id/reviews')
-    .get(authController.protect, reviewController.getReview)
-    .post(authController.protect, reviewController.setDetails, reviewController.createReview);
+
+router
+    .use('/:id/reviews', reviewRouter);
 
 
 module.exports = router;

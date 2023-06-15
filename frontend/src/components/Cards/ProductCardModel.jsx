@@ -140,7 +140,7 @@ function ProductCardModel(props) {
           size="large"
           readOnly />
         <Typography sx={ RatingSectionTextStyle }>
-          ({ parseInt(props.numOfRating, 10) })
+          { `${props.averageRating.toFixed(1)} (${props.numOfRating.toFixed(0)}) ` }
         </Typography>
       </Box>
     );
