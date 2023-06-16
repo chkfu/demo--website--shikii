@@ -10,36 +10,52 @@ import HomeSubheading from '../ReusableItems/HomeSubheading';
 import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
 import HomeDisplayTextBox from '../reusableItems/HomeDisplayTextBox';
 
+
+// styles
+
+const OuterContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  mt: '30px',
+  m: '20px 15vw 0 15vw',
+  width: '70vw',
+  height: '450px'
+};
+
+const InnerBoxStyle = {
+  textDecoration: 'none'
+};
+
+const DividerStyle = {
+  width: '100%'
+};
+
 // rendering
 function ExploreSection() {
   return (
     <section>
       <HomeContainer>
-
         <Box>
           <HomeHeading title='Shikii News' />
           <HomeSubheading subtitle='Find our ideas with modern Asian designs' />
           <HomeCatalogueRedirect linkTo='/news' />
         </Box>
 
-        <Box
-          className='display--outer--container'
-          sx={ { display: 'flex', justifyContent: 'center', mt: '30px', m: '20px 15vw 0 15vw', width: '70vw', height: '450px' } }>
-
-          <div className="display--inner--left">
-            <Link to='/testingAnnouncement' style={ { textDecoration: 'none' } }> <HomeDisplayTextBox title='Products' /></Link>
+        <Box sx={ OuterContainerStyle }>
+          <div className='display--inner--left'>
+            <Link to='/testingAnnouncement' style={ InnerBoxStyle }>
+              <HomeDisplayTextBox title='Products' />
+            </Link>
           </div>
-
-          <div className="display--inner--right">
-            <Link to='/testingAnnouncement' style={ { textDecoration: 'none' } }>
+          <div className='display--inner--right'>
+            <Link to='/testingAnnouncement' style={ InnerBoxStyle }>
               <HomeDisplayTextBox title='Services' />
             </Link>
           </div>
         </Box>
-
       </HomeContainer>
 
-      <Divider style={ { width: '100%' } } />
+      <Divider style={ DividerStyle } />
     </section>
   );
 }

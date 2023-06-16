@@ -11,6 +11,34 @@ import FunctionIcons from '../../ReusableItems/FunctionIcons';
 import FunctionTexts from '../../ReusableItems/FunctionTexts';
 
 
+// styles
+
+const ContainerStyle = {
+  display: 'flex'
+};
+
+const IconContainerStyle = {
+  width: '60px',
+  height: '60px',
+  m: '5px 10px',
+  borderRadius: '100%',
+  boxShadow: 2,
+  transition: 'transform 1s',
+  ':hover': {
+    cursor: 'pointer',
+    transform: 'scale(1.1)',
+    transition: 'transform 1s'
+  }
+};
+
+const IconStyle = {
+  width: '100%',
+  height: '100%'
+};
+
+
+// rendering
+
 function UserComponent() {
 
   // redirect hook
@@ -23,29 +51,31 @@ function UserComponent() {
   const LogoutHandler = async () => {
     // terminate storage and cookies]
     localStorage.clear();
-    await axios.get('http://127.0.0.1:3002/api/v1/users/logout', { credentials: 'include', withCredentials: true });
+    await axios.get('http://127.0.0.1:3002/api/v1/users/logout',
+      {
+        credentials: 'include',
+        withCredentials: true
+      });
     // refresh + redirect
     navigate('/');
     window.location.reload();
   };
 
+  const IconRedirectHandler = () => {
+    return navigate('/user-profile');
+  };
 
 
   // rendering
   return (
-    <Box sx={ { display: 'flex' } }>
+    <Box sx={ ContainerStyle }>
 
       {/* icon */ }
-
-      <Box
-        onClick={ () => { return navigate('/user-profile'); } }
-        sx={ {
-          width: '60px', height: '60px', m: '5px 10px', borderRadius: '100%', boxShadow: 2, transition: 'transform 1s',
-          ':hover': { cursor: 'pointer', transform: 'scale(1.1)', transition: 'transform 1s' }
-        } }>
-        <img
-          src={ `/images/users/${userIcon}` } alt="user icon"
-          style={ { width: '100%', height: '100%' } } />
+      <Box sx={ IconContainerStyle }
+        onClick={ IconRedirectHandler } >
+        <img style={ IconStyle }
+          src={ `/images/users/${userIcon}` }
+          alt="user icon" />
       </Box>
 
 
@@ -59,7 +89,6 @@ function UserComponent() {
           <FunctionTexts>Logout</FunctionTexts>
         </IconContainer>
       </div>
-
     </Box >
   );
 }

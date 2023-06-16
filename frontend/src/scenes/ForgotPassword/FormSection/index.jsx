@@ -10,6 +10,49 @@ import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
 
 
 
+// styles
+
+const FormBoxStyle = {
+  display: 'grid',
+  gridTemplateRows: '1fr 3fr',
+  justifyItems: "left",
+  p: '20px 10px'
+};
+
+const LabelStyle = {
+  padding: '0 10px',
+  fontSize: '16px'
+};
+
+const InputBoxStyle = {
+  width: '350px'
+};
+
+const BtnBoxStyle = {
+  p: '20px'
+};
+
+const LinkStyle = {
+  textDecoration: 'none'
+};
+
+const BtnStyle = {
+  width: '320px',
+  borderRadius: '0px',
+  m: '5px',
+  p: '10px',
+  backgroundColor: '#295252',
+  color: 'white',
+  ':hover': {
+    backgroundColor: '#1F3D3D'
+  }
+};
+
+const FormStyle = {
+  p: '8px 0'
+};
+
+
 // formik and yup settings
 
 const forgotPasswordInitialValues = {
@@ -24,18 +67,18 @@ const submitHandler = async (values) => {
   await axios.post('http://127.0.0.1:3002/api/v1/users/forgotPassword', values);
 };
 
+
 //  components
 
 const FormBox = ({ values }) => {
   return (
-    <Box className='form--box'
-      sx={ { display: 'grid', gridTemplateRows: '1fr 3fr', justifyItems: "left", p: '20px 10px' } }>
+    <Box sx={ FormBoxStyle }>
 
-      <label
-        htmlFor='reset-email'
-        style={ { padding: '0 10px', fontSize: '16px' } }>Enter email address</label>
+      <label htmlFor='reset-email' style={ LabelStyle }>
+        Enter email address
+      </label>
 
-      <Box sx={ { width: '350px' } }>
+      <Box sx={ InputBoxStyle }>
         <InputFieldReuse id='reset-email' name='email' text='email' />
       </Box>
 
@@ -45,28 +88,21 @@ const FormBox = ({ values }) => {
 
 const ButtonBox = ({ values }) => {
   return (
-    <Box className='button--box' sx={ { p: '20px' } }>
+    <Box className='button--box' sx={ BtnBoxStyle }>
 
-      <Link to='/testingAnnouncement' style={ { textDecoration: 'none' } }>
-        <Button type='submit'
-          variant='contained'
-          sx={ {
-            width: '320px', borderRadius: '0px', m: '5px', p: '10px',
-            backgroundColor: '#295252',
-            color: 'white',
-            ':hover': { backgroundColor: '#1F3D3D' },
-          } }>
+      <Link to='/testingAnnouncement' style={ LinkStyle }>
+        <Button type='submit' variant='contained' sx={ BtnStyle }>
           Request reset link
         </Button>
       </Link>
 
-      <Link to='/login' style={ { textDecoration: 'none' } }>
+      <Link to='/login' style={ LinkStyle }>
         <Button variant='outlined'
-          sx={ {
-            width: '320px', borderRadius: '0px', m: '5px', p: '10px',
-            border: '1px solid #295252', color: '#295252'
-          } }>Back To Login</Button>
+          sx={ BtnStyle }>
+          Back To Login
+        </Button>
       </Link>
+
     </Box>
   );
 };
@@ -83,15 +119,10 @@ function index() {
 
       { ({ formik, values }) => (
         <Form>
-
-          <Box className='form--container'
-            sx={ { p: '8px 0' } }>
-
+          <Box sx={ FormStyle }>
             <FormBox />
             <ButtonBox />
-
           </Box>
-
         </Form>
       ) }
     </Formik>

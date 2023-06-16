@@ -8,10 +8,41 @@ import { ResponsiveContext } from '../../../App';
 import ProductCardModel from '../../../components/Cards/ProductCardModel';
 import ErrorPage from '../../ErrorPage';
 
+
+// styles
+
+const TitleStyle = {
+    mt: '40px',
+    p: '20px',
+    fontSize: '30px',
+    textAlign: 'center',
+    overflow: 'hidden',
+};
+
+const ExtendedContainerStyle = {
+    display: 'grid',
+    justifyItems: 'center',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    p: '20px 0',
+};
+
+const ShrinkedContainerStyle = {
+    display: 'grid',
+    justifyItems: 'center',
+    gridTemplateColumns: '1fr 1fr',
+    p: '20px 0',
+};
+
+
+// rendering
+
 function ProductSection() {
+
+    // responsive design
     const screenWidth = useContext(ResponsiveContext);
+
     // database fetching
-    const { data, error, isLoading, isFetching, isError } = useQuery('FetchNewItem', () => {
+    const { data, isLoading, isFetching, isError } = useQuery('FetchNewItem', () => {
         return axios.get('http://127.0.0.1:3002/api/v1/products/get-new-items');
     });
     if (isLoading, isFetching) {
@@ -21,28 +52,16 @@ function ProductSection() {
         return <ErrorPage />;
     }
 
-    // rendering
-
+    // renders
     return (
         <>
-            <Typography
-                className='feature--product--title'
-                sx={ {
-                    mt: '40px',
-                    p: '20px',
-                    fontSize: '30px',
-                    textAlign: 'center',
-                    overflow: 'hidden',
-                } }>Latest Products</Typography>
+            <Typography sx={ TitleStyle }>
+                Latest Products
+            </Typography>
 
             <Box
                 className='features--products--container'
-                sx={ {
-                    display: 'grid',
-                    justifyItems: 'center',
-                    gridTemplateColumns: screenWidth > 900 ? '1fr 1fr 1fr' : '1fr 1fr',
-                    p: '20px 0',
-                } }>
+                sx={ screenWidth > 900 ? ExtendedContainerStyle : ShrinkedContainerStyle }>
                 {
                     data.data.data.products.map(product => {
                         return (
@@ -64,12 +83,15 @@ function ProductSection() {
                                                     input: product._id,
                                                     quantity: 1
                                                 },
-                                                { withCredentials: true, credentials: 'include' });
+                                                {
+                                                    withCredentials: true,
+                                                    credentials: 'include'
+                                                });
                                         } } />
                             </div>);
                     })
                 }
-            </Box >
+            </Box>
         </>
     );
 }

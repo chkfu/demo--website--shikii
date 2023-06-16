@@ -20,15 +20,24 @@ const LinkStyle = {
 
 // rendering
 function ButtonSection() {
+
   // redux
   const dispatch = useDispatch();
+
+  // function
+  const ClickHandler = () => {
+    dispatch(switchCartOpen(false));
+  };
+
   // render
   return (
     <Box sx={ ContainerStyle } >
       <Link
         to='/cart'
         style={ LinkStyle }>
-        <ContainedButton text='Proceed' callbackFn={ () => dispatch(switchCartOpen(false)) } />
+        <ContainedButton
+          text='Proceed'
+          callbackFn={ ClickHandler } />
       </Link>
     </Box>
   );

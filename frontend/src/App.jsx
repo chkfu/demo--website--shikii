@@ -18,9 +18,7 @@ import Features from './scenes/Features';
 import ForgotPassword from './scenes/ForgotPassword';
 import Home from './scenes/Home';
 import Login from './scenes/Login';
-import News from './scenes/News';
 import ProductLayout from './scenes/ProductLayout';
-import Search from './scenes/Search';
 import TestingAnnouncement from './scenes/TestingAnnouncement';
 import UserProfile from './components/UserPanel.jsx';
 
@@ -67,8 +65,6 @@ function App() {
               <Route path='/features' element={ <Features /> } />
               <Route path='/forgotPassword' element={ <ForgotPassword /> } />
               <Route path='/login' element={ <Login /> } />
-              <Route path='/news' element={ <News /> } />
-              <Route path='/search' element={ <Search /> } />
               <Route path='/testingAnnouncement' element={ <TestingAnnouncement /> } />
               <Route path='/user-profile' element={ <UserProfile /> } />
               <Route path='*' element={ <ErrorPage /> } />

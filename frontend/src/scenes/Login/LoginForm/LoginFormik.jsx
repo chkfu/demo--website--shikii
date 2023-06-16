@@ -7,8 +7,15 @@ import axios from 'axios';
 // from file
 import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
 import SubmissionButton from '../../../components/Button/SubmissionButton';
-// formik and yup basic setting
 
+
+// styles 
+
+const FormStyle = {
+    p: '10px 20px'
+};
+
+// formik and yup basic setting
 const LoginInitialValues = {
     email: "",
     password: ""
@@ -26,40 +33,49 @@ const LoginValidationSchema = Yup.object().shape({
 });
 
 
+// rendering
+
 function LoginFormik() {
 
     // redirect
     const navigate = useNavigate();
 
+    // function
+    const SubmitHandler = async (values) => {
+        try {
+            return await axios.post('http://127.0.0.1:3002/api/v1/users/login', values,
+                {
+                    withCredentials: true,
+                    credentials: 'include'
+                })
+                .then((res) => {
+                    if (res.data.status === 'success') {
+                        // memorisation, avoid frequent data fetching
+                        localStorage.clear();
+                        localStorage.setItem('loginStatus', true);
+                        localStorage.setItem('userId', res.data.data.user._id);
+                        localStorage.setItem('userIcon', res.data.data.user.coverimage);
+                        // refresh + redirect
+                        navigate('/');
+                        return window.location.reload();
+                    }
+                });
+        }
+        catch (error) {
+            localStorage.clear();
+            alert('Email or Password is incorrect.  Please try again.');
+        }
+    };
+
+    // render
     return (
         <Formik
             initialValues={ LoginInitialValues }
             validationSchema={ LoginValidationSchema }
-            onSubmit={ async (values) => {
-                try {
-                    return await axios.post('http://127.0.0.1:3002/api/v1/users/login', values, { withCredentials: true, credentials: 'include' })
-                        .then((res) => {
-                            if (res.data.status === 'success') {
-                                // memorisation, avoid frequent data fetching
-                                localStorage.clear();
-                                localStorage.setItem('loginStatus', true);
-                                localStorage.setItem('userId', res.data.data.user._id);
-                                localStorage.setItem('userIcon', res.data.data.user.coverImage);
-                                // refresh + redirect
-                                navigate('/');
-                                return window.location.reload();
-                            }
-                        });
-                }
-                catch (error) {
-                    localStorage.clear();
-                    alert('Email or Password is incorrect.  Please try again.');
-                }
-            } }>
+            onSubmit={ SubmitHandler }>
 
             { ({ formik, values }) => (
-                <Box className='form--format--container'
-                    sx={ { p: '10px 20px' } }>
+                <Box sx={ FormStyle }>
                     <Form>
                         <InputFieldReuse name='email' type='email' label='Email Address' />
                         <InputFieldReuse name='password' type='password' label='Password' />

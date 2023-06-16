@@ -8,7 +8,7 @@ import LabelBox from './components/LabelBox';
 import { setSorter } from './../../../../../../redux/reducers/exploreSlice';
 
 
-// style
+// styles
 
 const ShrinkedSelectFromStyle = {
     height: '46px',

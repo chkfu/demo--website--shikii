@@ -4,12 +4,15 @@ import { ResponsiveContext } from '../../../../App';
 import ShrinkedSection from './ResponsiveDesign/ShrinkedSection';
 import ExpandedSection from './ResponsiveDesign/ExpandedSection';
 
+
+// rendering
+
 function FilterSection() {
 
     // responsive design
     const screenWidth = useContext(ResponsiveContext);
 
-    // rendering
+    // render
     return (
         screenWidth < 1024 ? <ShrinkedSection /> : <ExpandedSection />
     );

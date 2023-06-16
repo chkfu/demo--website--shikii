@@ -7,6 +7,13 @@ import LoginContainer from './LoginForm/LoginContainer';
 import RegisterContainer from './SignupForm/RegisterContainer';
 import './css/login.css';
 
+// styles
+
+const SectionStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
 
 // rendering
 
@@ -15,17 +22,11 @@ function Login() {
   const [loginChosen, setLoginChosen] = useState(true);
   const RegFormSwitch = () => {
     loginChosen === true ? setLoginChosen(false) : setLoginChosen(true);
+    console.log(loginChosen);
   };
   // rendering
   return (
-    <Box
-      className='login--page--section'
-      sx={ {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      } }>
-
+    <Box className='login--page--section' sx={ SectionStyle } >
       { loginChosen === true ?
         <SectionScrollingIn>
           <LoginContainer RegFormSwitch={ RegFormSwitch } />
@@ -35,7 +36,7 @@ function Login() {
           <RegisterContainer RegFormSwitch={ RegFormSwitch } />
         </SectionScrollingIn>
       }
-    </Box>
+    </Box >
   );
 }
 

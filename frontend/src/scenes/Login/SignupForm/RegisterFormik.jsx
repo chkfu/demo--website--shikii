@@ -1,3 +1,4 @@
+// from package
 import React from 'react';
 import { Box } from '@mui/material';
 import { Formik, Form } from 'formik';
@@ -43,15 +44,163 @@ const RegisterValidationSchema = Yup.object().shape({
         .required('* Password Confirm is required.'),
 });
 
-//  rendering
 
-function RegisterFormik() {
+// styles
+const FormatContainerStyle = {
+    p: '10px 20px'
+};
 
+const Page_ExtendedBoxStyle = {
+    display: 'static'
+};
+
+const Page_ShrinkedBoxStyle = {
+    display: 'none'
+};
+
+const Page01_InnerBoxStyle = {
+    display: 'flex',
+    justifyContent: 'space-between'
+};
+
+const InputContainerStyle = {
+    width: '50%'
+};
+
+const fnameInputStyle = {
+    width: '100%'
+};
+
+const Page01_SelectStyle = {
+    width: '50%',
+    '&.MuiBox-root': {
+        textAlign: 'left',
+        p: '10px'
+    }
+};
+
+const Page01_BtnBoxStyle = {
+    display: 'flex',
+    justifyContent: 'right',
+    mt: '10px',
+    p: '10px'
+};
+
+
+const Page03_InnerBoxStyle = {
+    height: '200px',
+    display: 'flex',
+    justifyContent: 'center',
+    mt: '20px'
+};
+
+const Page03_LinkBoxStyle = {
+    height: '200px',
+    display: 'flex',
+    justifyContent: 'center',
+    mt: '20px'
+};
+
+const LinkStyle = {
+    textDecoration: 'none'
+};
+
+// components
+
+const Page01 = () => {
     // redux
     const currRegPage = useSelector(state => state.authentication.currRegPage);
     const dispatch = useDispatch();
-    // redirect
-    const navigate = useNavigate();
+    // function
+    const ClickHandler = () => {
+        dispatch(setCurrRegPage(2));
+    };
+    //   render
+    return (
+        <Box sx={ currRegPage === 1 ? Page_ExtendedBoxStyle : Page_ShrinkedBoxStyle }>
+            <Box sx={ Page01_InnerBoxStyle }>
+                {/* name column */ }
+                <Box sx={ InputContainerStyle }>
+                    <InputFieldReuse
+                        sx={ fnameInputStyle }
+                        name='firstName'
+                        type='firstName'
+                        label='First Name' />
+                </Box>
+                <Box sx={ InputContainerStyle }>
+                    <InputFieldReuse
+                        name='lastName'
+                        type='lastName'
+                        label='Last Name' />
+                </Box>
+            </Box>
+            {/* select column */ }
+            <Box sx={ Page01_InnerBoxStyle }>
+                <Box sx={ Page01_SelectStyle }>
+                    <SelectFieldReuse
+                        name='gender'
+                        label='Gender'
+                        options={ ['male', 'female'] } />
+                </Box>
+                <Box sx={ Page01_SelectStyle }>
+                    <InputFieldReuse
+                        name='age'
+                        label='Age'
+                        type='number' />
+                </Box>
+            </Box>
+            {/* button column */ }
+            <Box
+                sx={ Page01_BtnBoxStyle }>
+                <ContainedButton
+                    text='Next'
+                    callbackFn={ ClickHandler }>
+                    Next
+                </ContainedButton>
+            </Box>
+        </Box >
+    );
+};
+
+
+const Page02 = () => {
+    // redux
+    const currRegPage = useSelector(state => state.authentication.currRegPage);
+    // render
+    return (
+        <Box sx={ currRegPage === 2 ? Page_ExtendedBoxStyle : Page_ShrinkedBoxStyle }>
+            <InputFieldReuse name='email' type='email' label='Email Address' />
+            <InputFieldReuse name='password' type='password' label='Password' />
+            <InputFieldReuse name='passwordConfirm' type='password' label='Password Confirm' />
+            <SubmissionButton text='Register' />
+        </Box>
+    );
+};
+
+const Page03 = () => {
+    // redux
+    const currRegPage = useSelector(state => state.authentication.currRegPage);
+    // render
+    return (
+        <Box sx={ currRegPage === 3 ? Page_ExtendedBoxStyle : Page_ShrinkedBoxStyle }>
+            <Box sx={ Page03_InnerBoxStyle } >
+                Thank you for your registration.
+            </Box>
+            <Box sx={ Page03_LinkBoxStyle }>
+                <Link to='/' style={ LinkStyle }>
+                    <ContainedButton text='Return' callbackFn={ () => { dispatch(setCurrRegPage(3)); } } />
+                </Link>
+            </Box>
+        </Box >
+    );
+};
+
+
+//  rendering
+
+function RegisterFormik() {
+    // redux
+    const dispatch = useDispatch();
     // render
     return (
         <Formik
@@ -59,84 +208,15 @@ function RegisterFormik() {
             validationSchema={ RegisterValidationSchema }
             onSubmit={ async (values) => {
                 await axios.post('http://127.0.0.1:3002/api/v1/users/signup', values);
-                dispatch(setCurrRegPage('3'));
+                dispatch(setCurrRegPage(3));
             } }>
 
             { ({ formik, values }) => (
-                <Box className='form--format--container' sx={ { p: '10px 20px' } }>
-
+                <Box sx={ FormatContainerStyle }>
                     <Form>
-
-                        <Box className='page-1' sx={ {
-                            display: currRegPage === 1 ? 'static' : 'none'
-                        } }>
-                            <Box
-                                className='form--format--container'
-                                sx={ { display: 'flex', justifyContent: 'space-between' } }>
-
-                                <Box sx={ { width: '50%' } }>
-                                    <InputFieldReuse sx={ { width: '100%' } } name='firstName' type='firstName' label='First Name' />
-                                </Box>
-
-                                <Box sx={ { width: '50%' } }>
-                                    <InputFieldReuse name='lastName' type='lastName' label='Last Name' />
-                                </Box>
-                            </Box>
-
-                            <Box
-                                className='form--format--container'
-                                sx={ { display: 'flex', justifyContent: 'space-between' } }>
-
-                                <Box sx={ {
-                                    width: '50%', '&.MuiBox-root': { textAlign: 'left', p: '10px' }
-                                } }>
-                                    <SelectFieldReuse name='gender' label='Gender' options={ ['male', 'female'] } />
-                                </Box>
-
-                                <Box sx={ {
-                                    width: '50%', '&.MuiBox-root': { textAlign: 'left' }
-                                } }>
-                                    <InputFieldReuse name='age' label='Age' type='number' />
-                                </Box>
-
-                            </Box>
-
-                            <Box
-                                sx={ { display: 'flex', justifyContent: 'right', mt: '10px', p: '10px' } }>
-                                <ContainedButton
-                                    text='Next' callbackFn={ () => { dispatch(setCurrRegPage(2)); } }>
-                                    Next
-                                </ContainedButton>
-                            </Box>
-
-
-                        </Box>
-
-                        <Box className='page--2' sx={ {
-                            display: currRegPage === 2 ? 'static' : 'none'
-                        } }>
-                            <InputFieldReuse name='email' type='email' label='Email Address' />
-                            <InputFieldReuse name='password' type='password' label='Password' />
-                            <InputFieldReuse name='passwordConfirm' type='password' label='Password Confirm' />
-
-                            <SubmissionButton text='Register' />
-
-                        </Box>
-
-                        <Box className='page--3'
-                            sx={ {
-                                display: currRegPage === '3' ? 'static' : 'none'
-                            } }>
-
-                            <Box sx={ { height: '200px', display: 'flex', justifyContent: 'center', mt: '20px' } }>
-                                Thank you for your registration.
-                            </Box>
-
-                            <Box sx={ { p: '20px', display: 'flex', justifyContent: 'center' } }>
-                                <Link to='/' style={ { textDecoration: 'none' } }> <ContainedButton text='Return' /> </Link>
-                            </Box>
-                        </Box>
-
+                        <Page01 />
+                        <Page02 />
+                        <Page03 />
                     </Form>
                 </Box >
             ) }

@@ -115,7 +115,7 @@ const AnswerBox = ({ item }) => {
   );
 };
 
-const QuestionContainer = ({ children, item }) => {
+const QuestionContainer = ({ item }) => {
   // redux
   const questionSelected = useSelector(state => state.faq.questionSelected);
   //  render

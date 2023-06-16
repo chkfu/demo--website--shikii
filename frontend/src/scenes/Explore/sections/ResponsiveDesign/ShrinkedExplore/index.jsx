@@ -22,7 +22,7 @@ const DisplayContainerStyle = {
 
 // rendering
 
-function index({ data, sorter, setSorter, search, setSearch, currPage, setCurrPage, pageSize, setPageSize, refetch }) {
+function index({ data, refetch }) {
   return (
     <SceneContainer>
 

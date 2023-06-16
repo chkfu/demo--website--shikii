@@ -45,7 +45,7 @@ function CartComponent() {
 
         <DisplaySection className='display--section'>
           {
-            data.data.data.wishlist.length > 0 ? null : <p>No item can be found</p>
+            data.data.data.wishlist.length > 0 ? null : <p> No item can be found </p>
           }
           {
             data.data.data.wishlist[0]?.wishlist.map((item) => {

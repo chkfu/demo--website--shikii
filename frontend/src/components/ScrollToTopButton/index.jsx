@@ -49,8 +49,7 @@ function index({ scrollHandler }) {
     }
   };
 
-  // rendering 
-
+  // render
   return (
     <Button
       sx={ ButtonStyle }

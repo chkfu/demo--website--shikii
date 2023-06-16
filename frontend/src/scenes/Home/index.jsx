@@ -22,7 +22,6 @@ function Home() {
       <SectionScrollingIn>
         <NewsSection />
       </SectionScrollingIn>
-
     </>
 
   );

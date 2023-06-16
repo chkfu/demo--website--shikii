@@ -6,27 +6,28 @@ import LoginHeading from './LoginHeading';
 import LoginFormik from './LoginFormik';
 import LoginTriggerRow from './LoginTriggerRow';
 
+
+// styles
+
+const BoxStyle = {
+    p: '30px',
+    width: '450px',
+    minHeight: '600px',
+    boxShadow: 4,
+    backgroundColor: 'white',
+    opacity: '0.9'
+};
+
 // rendering
 function LoginContainer(props) {
     return (
-        <Box
-            className='login--container'
-            sx={ {
-                p: '30px',
-                width: '450px',
-                minHeight: '600px',
-                boxShadow: 4,
-                backgroundColor: 'white',
-                opacity: '0.9'
-            } }>
-
+        <Box sx={ BoxStyle }>
             <LoginHeading />
             <LoginFormik />
 
             <Divider />
 
             <LoginTriggerRow RegFormSwitch={ props.RegFormSwitch } />
-
         </Box>
     );
 }

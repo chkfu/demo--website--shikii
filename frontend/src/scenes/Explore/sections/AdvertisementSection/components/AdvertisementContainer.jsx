@@ -1,6 +1,7 @@
 // from package
 import React from 'react';
 import { Box } from '@mui/material';
+import './../../../css/explore.css';
 
 
 // styles
@@ -13,9 +14,7 @@ const ContainerStyle = {
 // rendering
 function AdvertisementContainer({ children }) {
   return (
-    <Box
-      className='explore--advertisement--container'
-      sx={ ContainerStyle }>
+    <Box className='explore--advertisement--container' sx={ ContainerStyle }>
       { children }
     </Box>
   );

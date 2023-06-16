@@ -8,17 +8,31 @@ import FormSection from './FormSection';
 
 
 
+// styles
+
+const OuterBoxStyle = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+const InnerBoxStyle = {
+  width: '450px',
+  height: '550px',
+  boxShadow: 3,
+  m: '40px',
+  p: '10px 40px'
+};
+
+// rendering
+
 function ForgotPassword() {
   return (
-
-    <Box sx={ { display: 'flex', justifyContent: 'center' } }>
-      <Box sx={ { width: '450px', height: '550px', boxShadow: '3', m: '40px', p: '10px 40px' } }>
-
+    <Box sx={ OuterBoxStyle }>
+      <Box sx={ InnerBoxStyle }>
         <LogoSection />
         <TextSection />
         <FormSection />
-
-      </Box >
+      </Box>
     </Box>
   );
 }

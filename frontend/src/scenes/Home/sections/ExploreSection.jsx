@@ -13,6 +13,29 @@ import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
 import { ResponsiveContext } from '../../../App';
 import ErrorPage from '../../ErrorPage';
 
+
+
+// styles
+
+const OuterContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  mt: '50px',
+  width: 'auto',
+};
+
+const InnerContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  overflow: 'scroll'
+};
+
+const DividerStyle = {
+  width: '100%'
+};
+
+
+
 // rendering
 
 function ExploreSection() {
@@ -60,14 +83,9 @@ function ExploreSection() {
         </Box>
 
         {/* Container */ }
-        <Box
-          className='display--container--outer'
-          sx={ { display: 'flex', justifyContent: 'center', mt: '50px', width: 'auto', } }>
-
+        <Box sx={ OuterContainerStyle }>
           {/* Display Area */ }
-          <Box
-            className='display--container--inner--center'
-            sx={ { display: 'flex', justifyContent: 'center', overflow: 'scroll' } }>
+          <Box sx={ InnerContainerStyle }>
             <HomePairCardsContiner>
               {
                 data.data.data.products.map((product, index) => (
@@ -91,7 +109,10 @@ function ExploreSection() {
                               input: product._id,
                               quantity: 1
                             },
-                            { withCredentials: true, credentials: 'include' });
+                            {
+                              withCredentials: true,
+                              credentials: 'include'
+                            });
                         } }
                       />
                     </div>
@@ -100,11 +121,10 @@ function ExploreSection() {
               }
             </HomePairCardsContiner>
           </Box>
-
-
         </Box>
       </HomeContainer >
-      <Divider style={ { width: '100%' } } />
+
+      <Divider style={ DividerStyle } />
     </section >
   );
 };
