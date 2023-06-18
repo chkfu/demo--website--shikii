@@ -5,13 +5,30 @@ const catchAsync = require('./../util/catchAsync');
 
 // controllers for users
 
-exports.getMe = catchAsync(async (req, res, next) => {
-    const user = res.locals.user;
+exports.getCurrUser = catchAsync(async (req, res, next) => {
+    // auth.protect already set up currUser detail
     res.status(200).json({
+        status: 'success',
         data: {
-            status: 'success',
-            user
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            gender: req.user.gender,
+            age: req.user.age,
+            role: req.user.role,
+            image: req.user.coverimage
         }
+    });
+});
+
+exports.updateCurrUser = catchAsync(async (req, res, next) => {
+    const newUpdate = await User.findByIdAndUpdate(req.user._id, req.body, {
+        runValidators: true,
+        new: true
+    });
+    res.status(200).json({
+        status: 'success',
+        update: newUpdate
     });
 });
 

@@ -20,7 +20,7 @@ const LinkStyle = {
 
 // rendering
 
-function LoginTriggerRow(props) {
+function LoginTriggerRow() {
     return (
         <Box sx={ RowStyle }>
             <Block>
@@ -36,7 +36,7 @@ function LoginTriggerRow(props) {
                 <Sentence>
                     Create your Account?
                 </Sentence>
-                <TriggerLink callbackFn={ props.RegFormSwitch } />
+                <TriggerLink />
             </Block>
         </Box>
     );

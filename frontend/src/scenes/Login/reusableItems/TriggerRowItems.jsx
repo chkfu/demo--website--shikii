@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginFormChosen } from '../../../../redux/reducers/authenticationSlice';
 
 
 // styles
@@ -45,11 +47,16 @@ export const Sentence = ({ children }) => {
     );
 };
 
-export const TriggerLink = ({ callbackFn }) => {
+export const TriggerLink = () => {
+    const loginFormChosen = useSelector(state => state.authentication.loginFormChosen);
+    const dispatch = useDispatch();
     // render
     return (
-        <Typography sx={ TriggerLinkStyle } onClick={ callbackFn }>
+        <Typography sx={ TriggerLinkStyle }
+            onClick={ () => {
+                dispatch(setLoginFormChosen(!loginFormChosen));
+            } } >
             Click here.
-        </Typography>
+        </Typography >
     );
 };

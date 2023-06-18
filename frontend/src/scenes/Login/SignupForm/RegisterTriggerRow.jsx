@@ -14,14 +14,14 @@ const RowStyle = {
 
 // rendering
 
-function RegisterTriggerRow(RegFormSwitch) {
+function RegisterTriggerRow() {
     return (
         <Box sx={ RowStyle }>
             <Block>
                 <Sentence>
                     Have an Account?
                 </Sentence>
-                <TriggerLink callbackFn={ RegFormSwitch } />
+                <TriggerLink />
             </Block>
         </Box>
     );

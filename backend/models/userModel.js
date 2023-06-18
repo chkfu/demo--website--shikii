@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema(
         gender: {
             type: String
         },
-        dateOfBirth: {
-            type: Date
+        age: {
+            type: Number
         },
         email: {
             type: String,
@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: [true, 'User Password is required.'],
             minlength: 8,
-            select: false
         },
         passwordConfirm: {
             type: String,
@@ -79,7 +78,7 @@ const userSchema = new mongoose.Schema(
 
 userSchema.virtual('review', {
     ref: 'Review',
-    foreignField: 'user',
+    foreignField: 'product',
     localField: '_id'
 });
 
@@ -103,9 +102,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.methods.correctPassword = async function (
-    candidatePassword,
-    userPassword) {
-    console.log(candidatePassword, userPassword);
+    candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
 };
 

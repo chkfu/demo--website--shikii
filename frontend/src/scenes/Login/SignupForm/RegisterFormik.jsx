@@ -3,7 +3,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 // from file
@@ -108,7 +108,7 @@ const LinkStyle = {
 // components
 
 const Page01 = () => {
-    // redux
+    //  redux
     const currRegPage = useSelector(state => state.authentication.currRegPage);
     const dispatch = useDispatch();
     // function
@@ -180,6 +180,7 @@ const Page02 = () => {
 const Page03 = () => {
     // redux
     const currRegPage = useSelector(state => state.authentication.currRegPage);
+    const dispatch = useDispatch();
     // render
     return (
         <Box sx={ currRegPage === 3 ? Page_ExtendedBoxStyle : Page_ShrinkedBoxStyle }>
@@ -188,7 +189,12 @@ const Page03 = () => {
             </Box>
             <Box sx={ Page03_LinkBoxStyle }>
                 <Link to='/' style={ LinkStyle }>
-                    <ContainedButton text='Return' callbackFn={ () => { dispatch(setCurrRegPage(3)); } } />
+                    <ContainedButton
+                        text='Return'
+                        callbackFn={ () => {
+                            dispatch(setCurrRegPage(1));
+                            console.log(currRegPage);
+                        } } />
                 </Link>
             </Box>
         </Box >
@@ -200,6 +206,7 @@ const Page03 = () => {
 
 function RegisterFormik() {
     // redux
+    const currRegPage = useSelector(state => state.authentication.currRegPage);
     const dispatch = useDispatch();
     // render
     return (
@@ -207,8 +214,8 @@ function RegisterFormik() {
             initialValues={ RegisterInitialValues }
             validationSchema={ RegisterValidationSchema }
             onSubmit={ async (values) => {
-                await axios.post('http://127.0.0.1:3002/api/v1/users/signup', values);
                 dispatch(setCurrRegPage(3));
+                await axios.post('http://127.0.0.1:3002/api/v1/users/signup', values);
             } }>
 
             { ({ formik, values }) => (

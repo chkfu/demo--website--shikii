@@ -15,7 +15,10 @@ router.post('/login', authController.login);
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.route('/get-current-user').get(authController.protect, userController.getMe);
+router.route('/get-current-user').get(authController.protect, userController.getCurrUser);
+router.route('/update-current-user').patch(authController.protect, userController.updateCurrUser);
+router.route('/user-change-password').patch(authController.protect, authController.userChangePassword);
+
 router.route('/wishlist')
     .get(authController.protect, wishlistController.getWishlist)
     .patch(authController.protect, wishlistController.updateWishlist);

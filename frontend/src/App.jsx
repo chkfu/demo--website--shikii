@@ -20,8 +20,7 @@ import Home from './scenes/Home';
 import Login from './scenes/Login';
 import ProductLayout from './scenes/ProductLayout';
 import TestingAnnouncement from './scenes/TestingAnnouncement';
-import UserProfile from './components/UserPanel.jsx';
-
+import UserPanel from './scenes/UserPanel';
 // package settings
 export const ResponsiveContext = createContext();
 export const UserLoginContext = createContext();
@@ -53,7 +52,6 @@ function App() {
           </nav>
 
           <main>
-
             <Routes>
               <Route path='/' element={ <Home /> } />
               <Route path='/cart' element={ <Cart /> } />
@@ -66,7 +64,7 @@ function App() {
               <Route path='/forgotPassword' element={ <ForgotPassword /> } />
               <Route path='/login' element={ <Login /> } />
               <Route path='/testingAnnouncement' element={ <TestingAnnouncement /> } />
-              <Route path='/user-profile' element={ <UserProfile /> } />
+              <Route path='/user-profile' element={ <UserPanel /> } />
               <Route path='*' element={ <ErrorPage /> } />
             </Routes>
           </main>

@@ -25,9 +25,6 @@ exports.logout = (req, res) => {
     expires: new Date(Date.now())
   };
 
-  res.cookie('jwt', '', cookieOptions);
-  res.cookie('userId', '', cookieOptions);
-
   res.status(200).json({
     status: 'success',
     data: null
@@ -104,7 +101,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
 
 exports.protect = catchAsync(async (req, res, next) => {
-
 
   let token;
   // adopted
@@ -196,5 +192,50 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
+});
 
+exports.userChangePassword = catchAsync(async (req, res, next) => {
+
+  // previos: protect middleware verified user's identity
+
+  // step 1 - identify new password === confirmed password
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new AppError('New Passwords are not matched.', 400));
+  }
+
+  // step 2 - identify new password != previous password
+  if (req.body.newPassword === req.body.currPassword) {
+    return next(new AppError('New Password is same as your old password.', 400));
+  }
+
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+
+  // step 3 - identity password with crypted one in mongodb
+  const user = await User.findOne({ _id: req.user._id }).select('+password');
+
+  console.log(req.body.currPassword);
+  console.log(user.password);
+  if (!user || !(await user.correctPassword(req.body.newPassword, user.password))) {
+    return next(new AppError('Incorrect email or password', 401));
+  }
+
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+  // ****  BUG: PASSWORD CHANGE BUG  ****
+
+  //  step 3b: if bcrypted compare password not match, return error
+  if (!user.correctPassword(req.body.currPassword, user.password)) {
+    console.log(req.body.currPassword, user.password);
+  }
+
+  // // step 4 - if all passed, change
+  user.password = req.body.newPassword;
+  user.passwordConfirm = req.body.confirmPassword;
+  await user.save();
+
+  res.status(200).json({
+    status: 'success'
+  });
 });
