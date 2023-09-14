@@ -1,7 +1,7 @@
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
-const Wishlist = require('../models/WishlistModel');
+const Wishlist = require('../models/wishlistModel');
 const catchAsync = require('./../util/catchAsync');
 const AppError = require('./../util/AppError');
 const sendEmail = require('./../util/email');

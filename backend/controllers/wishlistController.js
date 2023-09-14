@@ -6,7 +6,7 @@ const axios = require('axios');
 const AppError = - require('./../util/AppError');
 const catchAsync = require('./../util/catchAsync');
 const User = require('./../models/userModel');
-const Wishlist = require('../models/WishlistModel');
+const Wishlist = require('../models/wishlistModel');
 
 // Better Choice:
 // To improve, better to call/update wishlist in UserController
