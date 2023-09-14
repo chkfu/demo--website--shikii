@@ -9,7 +9,6 @@ const globalErrorHandler = require('./controllers/errorController');
 const articleRouter = require('./routes/articleRoute');
 const productRouter = require('./routes/productRoute');
 const userRouter = require('./routes/userRoute');
-const reviewRouter = require('./routes/reviewRoute');
 const faqRouter = require('./routes/faqRoute');
 
 
@@ -36,7 +35,7 @@ app.all('*', (req, res, next) => {
     res.status(404).json({
         data: {
             status: 'fail',
-            message: `failed to reach ${originalUrl}....`
+            message: "something went wrong.."
         }
     });
 });
