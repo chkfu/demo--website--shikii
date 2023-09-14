@@ -7,6 +7,7 @@ import FullFAQMenu from './components/FullFAQMenu';
 import FullFAQItem from './components/FullFAQItem';
 import FullFAQContent from './components/FullFAQContent';
 import AdvertisementSection from './components/AdvertismentSection';
+import { BACKEND_ROUTE } from '../../theme/api-links';
 
 
 
@@ -48,7 +49,7 @@ function FAQ() {
 
   // data-fetching
   const { data, isLoading, isError } = useQuery('fetchingFAQ', async () => {
-    return await axios.get('http://127.0.0.1:3002/api/v1/faq');
+    return await axios.get(`${BACKEND_ROUTE}/api/v1/faq`);
   });
   if (isLoading) return <></>;
   if (isError) return <></>;

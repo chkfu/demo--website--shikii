@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ResponsiveContext } from '../../../App';
 import ProductCardModel from '../../../components/Cards/ProductCardModel';
 import ErrorPage from '../../ErrorPage';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 // styles
@@ -43,7 +44,7 @@ function ProductSection() {
 
     // database fetching
     const { data, isLoading, isFetching, isError } = useQuery('FetchNewItem', () => {
-        return axios.get('http://127.0.0.1:3002/api/v1/products/get-new-items');
+        return axios.get(`${BACKEND_ROUTE}/api/v1/products/get-new-items`);
     });
     if (isLoading, isFetching) {
         return <CircularProgress color="inherit" />;
@@ -78,7 +79,7 @@ function ProductSection() {
                                     callback={
                                         async () => {
                                             await axios.patch(
-                                                'http://127.0.0.1:3002/api/v1/users/wishlist',
+                                                `${BACKEND_ROUTE}/api/v1/users/wishlist`,
                                                 {
                                                     input: product._id,
                                                     quantity: 1

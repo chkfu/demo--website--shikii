@@ -9,6 +9,7 @@ import AbstractBox from './AbstractBox';
 import InfoBox from './InfoBox';
 import CommentBox from './CommentBox';
 import ErrorPage from '../ErrorPage';
+import { BACKEND_ROUTE } from '../../theme/api-links';
 
 
 function ProductLayout() {
@@ -27,7 +28,7 @@ function ProductLayout() {
 
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery('fetch--single--product', async () => {
-    return await axios.get(`http://127.0.0.1:3002/api/v1/products/${id}`);
+    return await axios.get(`${BACKEND_ROUTE}/api/v1/products/${id}`);
   });
   if (isLoading) {
     return <CircularProgress color="inherit" />;

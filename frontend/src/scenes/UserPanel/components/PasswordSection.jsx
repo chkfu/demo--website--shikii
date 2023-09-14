@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
+
 
 function PasswordSection() {
 
@@ -15,7 +17,7 @@ function PasswordSection() {
       <Formik
         initialValues={ initialValues }
         onSubmit={ async (values) => {
-          return await axios.patch('http://127.0.0.1:3002/api/v1/users/user-change-password', values, {
+          return await axios.patch(`${BACKEND_ROUTE}/api/v1/users/user-change-password`, values, {
             credentials: 'include',
             withCredentials: true
           });

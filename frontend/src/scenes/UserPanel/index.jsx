@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 // from files
 import PanelContainer from './components/PanelContainer';
+import { BACKEND_ROUTE } from '../../theme/api-links';
 
 // style
 
@@ -20,7 +21,10 @@ function index() {
 
   // data fetching
   const { data, isLoading, isError, refetch } = useQuery('user-data-fetching', async () => {
-    return await axios.get('http://127.0.0.1:3002/api/v1/users/get-current-user', {
+
+    console.log(data);
+
+    return await axios.get(`${BACKEND_ROUTE}/api/v1/users/get-current-user`, {
       credentials: 'include',
       withCredentials: true
     });

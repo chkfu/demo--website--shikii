@@ -5,13 +5,14 @@ import axios from 'axios';
 // from file
 import ReviewStepContainer from './components/ReviewStepContainer';
 import InnerContainer from './components/InnerContainer';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 // rendering
 function ReviewStep() {
 
     const { data, isLoading, isError, refetch } = useQuery('fetching--wishlist--item', async () => {
-        return await axios.get('http://127.0.0.1:3002/api/v1/users/wishlist',
+        return await axios.get(`${BACKEND_ROUTE}/api/v1/users/wishlist`,
             {
                 withCredentials: true,
                 credentials: "include",

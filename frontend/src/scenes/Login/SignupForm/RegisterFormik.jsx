@@ -12,6 +12,7 @@ import SelectFieldReuse from '../../../components/Formik/SelectFieldReuse';
 import ContainedButton from '../../../components/Button/ContainedButton';
 import SubmissionButton from '../../../components/Button/SubmissionButton';
 import { setCurrRegPage } from './../../../../redux/reducers/authenticationSlice';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 // formik and yup basic setting
@@ -215,7 +216,7 @@ function RegisterFormik() {
             validationSchema={ RegisterValidationSchema }
             onSubmit={ async (values) => {
                 dispatch(setCurrRegPage(3));
-                await axios.post('http://127.0.0.1:3002/api/v1/users/signup', values);
+                await axios.post(`${BACKEND_ROUTE}/api/v1/users/signup`, values);
             } }>
 
             { ({ formik, values }) => (

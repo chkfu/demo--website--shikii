@@ -12,6 +12,7 @@ import ProductCardModel from '../../../components/Cards/ProductCardModel';
 import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
 import { ResponsiveContext } from '../../../App';
 import ErrorPage from '../../ErrorPage';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 
@@ -55,7 +56,7 @@ function ExploreSection() {
 
   // database fetching
   const { data, isLoading, isFetching, isError } = useQuery('ProductData', async () => {
-    return axios.get('http://127.0.0.1:3002/api/v1/products', {
+    return axios.get(`${BACKEND_ROUTE}/api/v1/products`, {
       params: {
         sort: '-createdAt',
         page: 1,
@@ -104,7 +105,7 @@ function ExploreSection() {
                         numOfRating={ product.numOfRating }
                         callback={ async () => {
                           await axios.patch(
-                            'http://127.0.0.1:3002/api/v1/users/wishlist',
+                            `${BACKEND_ROUTE}/api/v1/users/wishlist`,
                             {
                               input: product._id,
                               quantity: 1

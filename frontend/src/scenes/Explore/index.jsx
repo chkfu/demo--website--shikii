@@ -10,6 +10,7 @@ import { ResponsiveContext } from '../../App';
 import ShrinkedExplore from './sections/ResponsiveDesign/ShrinkedExplore';
 import ExpandedExplore from './sections/ResponsiveDesign/ExpandedExplore';
 import ErrorPage from '../ErrorPage';
+import { BACKEND_ROUTE } from '../../theme/api-links';
 
 
 function Explore() {
@@ -25,7 +26,7 @@ function Explore() {
 
     // fetching
     const { data, isLoading, isError, refetch } = useQuery(['fetch--all-products', currPage, sorter, pageLimit], async () => {
-        return await axios.get('http://127.0.0.1:3002/api/v1/products', {
+        return await axios.get(`${BACKEND_ROUTE}/api/v1/products`, {
             params: {
                 sort: sorter,
                 page: currPage,

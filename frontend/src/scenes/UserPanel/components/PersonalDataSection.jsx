@@ -3,6 +3,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 // rendering
@@ -36,7 +37,7 @@ function PersonalDataSection({ data }) {
       validationSchema={ UserDataValidationSchema }
       onSubmit={ async (values) => {
         try {
-          await axios.patch('http://127.0.0.1:3002/api/v1/users/update-current-user', values, {
+          await axios.patch(`${BACKEND_ROUTE}/api/v1/users/update-current-user`, values, {
             credentials: 'include',
             withCredentials: true
           });

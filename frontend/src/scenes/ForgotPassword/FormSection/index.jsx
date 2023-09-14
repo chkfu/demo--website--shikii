@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 // from file
 import InputFieldReuse from '../../../components/Formik/InputFieldReuse';
+import { BACKEND_ROUTE } from '../../../theme/api-links';
 
 
 
@@ -64,7 +65,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const submitHandler = async (values) => {
-  await axios.post('http://127.0.0.1:3002/api/v1/users/forgotPassword', values);
+  await axios.post(`${BACKEND_ROUTE}/api/v1/users/forgotPassword`, values);
 };
 
 
