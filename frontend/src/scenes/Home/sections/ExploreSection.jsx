@@ -4,12 +4,12 @@ import { Box, Divider, CircularProgress } from '@mui/material';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
-import HomeContainer from '../ReusableItems/HomeContainer';
-import HomeHeading from '../ReusableItems/HomeHeading';
-import HomeSubheading from '../ReusableItems/HomeSubheading';
-import HomePairCardsContiner from '../ReusableItems/HomePairCardsContiner';
+import HomeContainer from '../reusanleItems/HomeContainer';
+import HomeHeading from '../reusanleItems/HomeHeading';
+import HomeSubheading from '../reusanleItems/HomeSubheading';
+import HomePairCardsContiner from '../reusanleItems/HomePairCardsContiner';
 import ProductCardModel from '../../../components/Cards/ProductCardModel';
-import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
+import HomeCatalogueRedirect from '../reusanleItems/HomeCatalogueRedirect';
 import { ResponsiveContext } from '../../../App';
 import ErrorPage from '../../ErrorPage';
 import { BACKEND_ROUTE } from '../../../theme/api-links';

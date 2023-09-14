@@ -4,11 +4,11 @@ import { Box, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 // from file
 import '../css/newsSection.css';
-import HomeContainer from '../ReusableItems/HomeContainer';
-import HomeHeading from '../ReusableItems/HomeHeading';
-import HomeSubheading from '../ReusableItems/HomeSubheading';
-import HomeCatalogueRedirect from '../ReusableItems/HomeCatalogueRedirect';
-import HomeDisplayTextBox from '../reusableItems/HomeDisplayTextBox';
+import HomeContainer from '../reusanleItems/HomeContainer';
+import HomeHeading from '../reusanleItems/HomeHeading';
+import HomeSubheading from '../reusanleItems/HomeSubheading';
+import HomeCatalogueRedirect from '../reusanleItems/HomeCatalogueRedirect';
+import HomeDisplayTextBox from '../reusanleItems/HomeDisplayTextBox';
 
 
 // styles
