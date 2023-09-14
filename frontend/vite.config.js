@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
-import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
+import { splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         react(),
-        chunkSplitPlugin()
+        splitVendorChunkPlugin()
     ],
     server: {
         host: '127.0.0.1',
