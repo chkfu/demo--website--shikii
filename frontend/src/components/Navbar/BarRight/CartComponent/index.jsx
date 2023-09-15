@@ -12,6 +12,7 @@ import TitleSection from './components/drawer/TitleSection';
 import DisplaySection from './components/drawer/DisplaySection';
 import PriceSection from './components/drawer/PriceSection';
 import ButtonSection from './components/drawer/ButtonSection';
+import { BACKEND_ROUTE } from '../../../../theme/api-links';
 
 // Rendering
 function CartComponent() {
@@ -21,7 +22,7 @@ function CartComponent() {
 
   const { data, isLoading, isError, refetch } = useQuery('fetching--wishlist--', async () => {
     return await axios.get(
-      'http://127.0.0.1:3002/api/v1/users/wishlist',
+      `${BACKEND_ROUTE}/api/v1/users/wishlist`,
       { withCredentials: true, credentials: "include" });
   });
   if (isLoading) {

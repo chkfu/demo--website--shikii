@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // from file
 import BarLeftItemLink from '../../ReusableItems/BarLeftItemLink';
+import { BACKEND_ROUTE } from '../../../../../theme/api-links';
 
 
 // declaration 
@@ -53,7 +54,7 @@ const LogoutBtn = () => {
   const LogoutHandler = async () => {
     // terminate storage and cookies]
     localStorage.clear();
-    await axios.get('http://127.0.0.1:3002/api/v1/users/logout', { credentials: 'include', withCredentials: true });
+    await axios.get(`${BACKEND_ROUTE}/api/v1/users/logout`, { credentials: 'include', withCredentials: true });
     // refresh + redirect
     navigate('/');
     return window.location.reload();

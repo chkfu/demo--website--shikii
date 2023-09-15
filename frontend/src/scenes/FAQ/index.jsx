@@ -63,9 +63,9 @@ function FAQ() {
       <OuterContainer>
         <FullFAQMenu>
           {
-            categories.map(item => {
+            categories.map((item, i) => {
               return (
-                <FullFAQItem title={ item } />
+                <FullFAQItem key={ `faq-category-${i}` } title={ item } />
               );
             })
           }

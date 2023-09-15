@@ -78,7 +78,7 @@ const ContentContainer = ({ children }) => {
   );
 };
 
-const QuestionUpperBox = ({ item }) => {
+const QuestionUpperBox = ({ item, i }) => {
   // redux
   const dispatch = useDispatch();
   const questionSelected = useSelector(state => state.faq.questionSelected);
@@ -88,7 +88,7 @@ const QuestionUpperBox = ({ item }) => {
   };
   // render
   return (
-    <Box sx={ QuestionUpperBoxStyle }>
+    <Box key={ `question-box-${i}` } sx={ QuestionUpperBoxStyle }>
 
       <Typography
         sx={ QuestionTextStyle }>
@@ -140,10 +140,10 @@ function FullFAQContent({ data }) {
   return (
     <ContentContainer>
       {
-        data.data.data.map(item => {
+        data.data.data.map((item, i) => {
           if (item.category === categorySelected)
             return (
-              <QuestionContainer item={ item } />
+              <QuestionContainer key={ `question-container-${i}` } item={ item } />
             );
         }) }
 
