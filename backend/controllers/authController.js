@@ -20,6 +20,8 @@ exports.logout = (req, res) => {
   res.locals.user = null;
 
   const cookieOptions = {
+    httpOnly: false,
+    secure: false,
     expires: new Date(Date.now())
   };
 
