@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 // from file
 import SmallArticleCardModel from '../../../components/Cards/SmallArticleCardModel';
+import { BACKEND_ROUTE } from '../../../theme/api-links.js';
 
 
 // styles
@@ -32,7 +33,7 @@ const DividerStyle = {
 function NewsSection() {
     // database fetching
     const { data, error, isLoading, isFetching, isError } = useQuery('FetchArticles', () => {
-        return axios.get('http://localhost:3002/api/v1/articles');
+        return axios.get(`${BACKEND_ROUTE}/api/v1/articles`);
     });
     if (isLoading, isFetching) {
         return <CircularProgress color="inherit" />;
