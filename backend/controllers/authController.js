@@ -20,7 +20,7 @@ exports.logout = (req, res) => {
   res.locals.user = null;
 
   const cookieOptions = {
-    httpOnly: true,
+    httpOnly: false,
     secure: true,
     expires: new Date(Date.now())
   };
@@ -78,7 +78,7 @@ exports.login = catchAsync(async (req, res, next) => {
   const token = signinToken(user._id);
 
   const cookieOptions = {
-    domain: 'onrender.com',
+    domain: '.onrender.com',
     httpOnly: true,
     secure: true,
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
