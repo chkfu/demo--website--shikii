@@ -78,6 +78,7 @@ exports.login = catchAsync(async (req, res, next) => {
   const token = signinToken(user._id);
 
   const cookieOptions = {
+    domain: 'onrender.com',
     httpOnly: true,
     secure: true,
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
